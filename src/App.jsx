@@ -1,6 +1,7 @@
 import NavBar from "./shared/components/NavBar";
 import Index from "./modules/home/page/index";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Footer from "./shared/components/footer";
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </div>
+      <Footer />
     </>
   )
 }

@@ -9,6 +9,9 @@ export default function Index(){
             { title: "mysql basic operations on postgress"},
             { title: "mysql basic operations on postgress"},
             { title: "mysql basic operations on postgress"},
+            { title: "mysql basic operations on postgress"},
+            { title: "mysql basic operations on postgress"},
+            { title: "mysql basic operations on postgress"},
         ]
         );
 
