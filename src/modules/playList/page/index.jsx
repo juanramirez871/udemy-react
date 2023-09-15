@@ -1,5 +1,6 @@
 import SkeletonColor from "../components/skeletonVideo";
 import AccordionVideo from '../components/AccordionVideo';
+import DescriptionVideo from "../components/DescriptionVideo";
 
 export default function PlayList() {
 
@@ -9,6 +10,7 @@ export default function PlayList() {
                 <SkeletonColor />
                 <AccordionVideo />
             </div>
+            <DescriptionVideo />
         </>
     )
 }
