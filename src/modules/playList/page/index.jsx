@@ -7,10 +7,12 @@ export default function PlayList() {
     return (
         <>
             <div className="flexPlayList">
-                <SkeletonColor />
+                <div style={{ marginBottom: "20px" }}>
+                    <SkeletonColor />
+                    <DescriptionVideo />
+                </div>
                 <AccordionVideo />
             </div>
-            <DescriptionVideo />
         </>
     )
 }

@@ -29,7 +29,7 @@ export default function DescriptionVideo() {
     return (
         <div style={{ marginTop: "20px" }}>
             <Box sx={{ '& > legend': { mt: 2 } }}>
-                <div style={{ display: "flex", width: "63%", justifyContent: "space-between" }}>
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
                     <div style={{ display: "flex", flexDirection: "column" }}>
                         <Typography component="h1">Name Title video</Typography>
                         <Stack direction="row" spacing={4}>

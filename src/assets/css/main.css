@@ -29,7 +29,8 @@ a{
 }
 
 .flexPlayList{
-    display: flex !important
+    display: grid !important;
+    grid-template-columns: 65% 35%;
 }
 
 .topA{
