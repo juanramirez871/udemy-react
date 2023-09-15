@@ -195,7 +195,7 @@ function ResponsiveAppBar() {
               fontSize: "15px",
             }}
           >
-            Iniciar Seccion
+            Log in
           </Typography>
           </Button>)
           }
