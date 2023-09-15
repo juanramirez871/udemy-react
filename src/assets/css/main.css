@@ -7,6 +7,50 @@ html {
     background-color: #ede2e4;
 }
 
+li{
+    list-style: none;
+    background: #cbcbcb1f;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+li a {
+    color: black;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+}
+
 a{
     text-decoration: none;
+}
+
+.flexPlayList{
+    display: flex !important
+}
+
+.topA{
+    margin-left: 20px;
+}
+
+.accordionW{
+    width: 500px;
+}
+
+@media (max-width: 1000px){
+    .flexPlayList{
+        display: block !important
+    }
+
+    .topA{
+        margin-top: 30px;
+        margin-left: 0px;
+    }
+
+    .accordionW{
+        width: 100%;
+    }
 }

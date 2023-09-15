@@ -8,15 +8,15 @@ function App() {
 
   return (
     <>
-      <NavBar />
-      <div style={{ margin: "20px" }}>
-        <BrowserRouter>
+      <BrowserRouter>
+        <NavBar />
+        <div style={{ margin: "20px" }}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/video/:id" element={<PlayList />} />
           </Routes>
-        </BrowserRouter>
-      </div>
+        </div>
+      </BrowserRouter>
       <Footer />
     </>
   )

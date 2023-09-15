@@ -1,8 +1,14 @@
-export default function PlayList(){
+import SkeletonColor from "../components/skeletonVideo";
+import AccordionVideo from '../components/AccordionVideo';
+
+export default function PlayList() {
 
     return (
         <>
-        <h1></h1>
+            <div className="flexPlayList">
+                <SkeletonColor />
+                <AccordionVideo />
+            </div>
         </>
     )
 }
