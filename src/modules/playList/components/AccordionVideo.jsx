@@ -22,16 +22,13 @@ export default function AccordionVideo() {
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1bh-content"
-          id="panel1bh-header"
-          className='accordionW'
+          aria-controls="panel2bh-content"
+          id="panel2bh-header"
         >
-          <Typography sx={{ width: '33%', flexShrink: 0 }}>
-            Module 1
-          </Typography>
+          <Typography sx={{ width: '33%', flexShrink: 0 }}>Module 2</Typography>
         </AccordionSummary>
         <AccordionDetails>
-            <ul>
+        <ul>
               <li>
                   <Checkbox {...label} color="success" />
                   <Link>
