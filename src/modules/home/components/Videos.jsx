@@ -15,7 +15,7 @@ export default function Videos({ dataVideos }) {
                     {
                         dataVideos.map((video, i) => (
                             <div className="ag-courses_item" key={i}>
-                                <Link to="/video" className="ag-courses-item_link">
+                                <Link to="/video/1" className="ag-courses-item_link">
                                     <div className="ag-courses-item_bg"></div>
                                     <div className="ag-courses-item_title">
                                         <Typography component="p" variant="h5" className="small-l">

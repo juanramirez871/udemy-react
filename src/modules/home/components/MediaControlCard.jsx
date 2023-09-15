@@ -10,6 +10,7 @@ import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import { Tooltip } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export default function MediaControlCard() {
   const theme = useTheme();
@@ -31,17 +32,23 @@ export default function MediaControlCard() {
           </CardContent>
           <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
             <IconButton aria-label="previous">
-              <Tooltip title="chapter 1">
-                {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon style={{ color: "white" }} />}
-              </Tooltip>
+              <Link to="video/1">
+                <Tooltip title="chapter 1">
+                  {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon style={{ color: "white" }} />}
+                </Tooltip>
+              </Link>
             </IconButton>
             <IconButton aria-label="play/pause">
+              <Link to="video/1">
               <PlayArrowIcon sx={{ height: 38, width: 38, color: "white" }} />
+            </Link>
             </IconButton>
             <IconButton aria-label="next">
-              <Tooltip title="chapter 3">
-                {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon style={{ color: "white" }} />}
-              </Tooltip>
+              <Link to="video/1">
+                <Tooltip title="chapter 3">
+                  {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon style={{ color: "white" }} />}
+                </Tooltip>
+              </Link>
             </IconButton>
           </Box>
         </Box>
