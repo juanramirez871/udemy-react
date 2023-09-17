@@ -18,133 +18,135 @@ export default function AccordionVideo() {
   };
 
   return (
-    <div style={{ marginBottom: "30px" }} className='topA'>
-      <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2bh-content"
-          id="panel2bh-header"
-        >
-          <Typography sx={{ width: '33%', flexShrink: 0 }}>Module 2</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-        <ul>
+    <div>
+      <div style={{ marginBottom: "30px", position: "sticky", top: "20px" }} className='topA'>
+        <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel2bh-content"
+            id="panel2bh-header"
+          >
+            <Typography sx={{ width: '33%', flexShrink: 0 }}>Module 2</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <ul>
               <li>
-                  <Checkbox {...label} color="success" />
-                  <Link>
-                    1. Title video module 1 Title video module 1
-                  </Link>
+                <Checkbox {...label} color="success" />
+                <Link>
+                  1. Title video module 1 Title video module 1
+                </Link>
               </li>
               <li>
-                  <Checkbox {...label} color="success" />
-                  <Link>
-                    1. Title video module 1 Title video module 1
-                  </Link>
+                <Checkbox {...label} color="success" />
+                <Link>
+                  1. Title video module 1 Title video module 1
+                </Link>
               </li>
               <li>
-                  <Checkbox {...label} color="success" />
-                  <Link>
-                    1. Title video module 1 Title video module 1
-                  </Link>
-              </li>
-            </ul>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel2bh-content"
-          id="panel2bh-header"
-        >
-          <Typography sx={{ width: '33%', flexShrink: 0 }}>Module 2</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-        <ul>
-              <li>
-                  <Checkbox {...label} color="success" />
-                  <Link>
-                    1. Title video module 1 Title video module 1
-                  </Link>
-              </li>
-              <li>
-                  <Checkbox {...label} color="success" />
-                  <Link>
-                    1. Title video module 1 Title video module 1
-                  </Link>
-              </li>
-              <li>
-                  <Checkbox {...label} color="success" />
-                  <Link>
-                    1. Title video module 1 Title video module 1
-                  </Link>
+                <Checkbox {...label} color="success" />
+                <Link>
+                  1. Title video module 1 Title video module 1
+                </Link>
               </li>
             </ul>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3bh-content"
-          id="panel3bh-header"
-        >
-          <Typography sx={{ width: '33%', flexShrink: 0 }}>
-            Module 3
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-        <ul>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion expanded={expanded === 'panel2'} onChange={handleChange('panel2')}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel2bh-content"
+            id="panel2bh-header"
+          >
+            <Typography sx={{ width: '33%', flexShrink: 0 }}>Module 2</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <ul>
               <li>
-                  <Checkbox {...label} color="success" />
-                  <Link>
-                    1. Title video module 1 Title video module 1
-                  </Link>
+                <Checkbox {...label} color="success" />
+                <Link>
+                  1. Title video module 1 Title video module 1
+                </Link>
               </li>
               <li>
-                  <Checkbox {...label} color="success" />
-                  <Link>
-                    1. Title video module 1 Title video module 1
-                  </Link>
+                <Checkbox {...label} color="success" />
+                <Link>
+                  1. Title video module 1 Title video module 1
+                </Link>
               </li>
               <li>
-                  <Checkbox {...label} color="success" />
-                  <Link>
-                    1. Title video module 1 Title video module 1
-                  </Link>
+                <Checkbox {...label} color="success" />
+                <Link>
+                  1. Title video module 1 Title video module 1
+                </Link>
               </li>
             </ul>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel4bh-content"
-          id="panel4bh-header"
-        >
-          <Typography sx={{ width: '33%', flexShrink: 0 }}>Module 4</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-        <ul>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel3bh-content"
+            id="panel3bh-header"
+          >
+            <Typography sx={{ width: '33%', flexShrink: 0 }}>
+              Module 3
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <ul>
               <li>
-                  <Checkbox {...label} color="success" />
-                  <Link>
-                    1. Title video module 1 Title video module 1
-                  </Link>
+                <Checkbox {...label} color="success" />
+                <Link>
+                  1. Title video module 1 Title video module 1
+                </Link>
               </li>
               <li>
-                  <Checkbox {...label} color="success" />
-                  <Link>
-                    1. Title video module 1 Title video module 1
-                  </Link>
+                <Checkbox {...label} color="success" />
+                <Link>
+                  1. Title video module 1 Title video module 1
+                </Link>
               </li>
               <li>
-                  <Checkbox {...label} color="success" />
-                  <Link>
-                    1. Title video module 1 Title video module 1
-                  </Link>
+                <Checkbox {...label} color="success" />
+                <Link>
+                  1. Title video module 1 Title video module 1
+                </Link>
               </li>
             </ul>
-        </AccordionDetails>
-      </Accordion>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel4bh-content"
+            id="panel4bh-header"
+          >
+            <Typography sx={{ width: '33%', flexShrink: 0 }}>Module 4</Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <ul>
+              <li>
+                <Checkbox {...label} color="success" />
+                <Link>
+                  1. Title video module 1 Title video module 1
+                </Link>
+              </li>
+              <li>
+                <Checkbox {...label} color="success" />
+                <Link>
+                  1. Title video module 1 Title video module 1
+                </Link>
+              </li>
+              <li>
+                <Checkbox {...label} color="success" />
+                <Link>
+                  1. Title video module 1 Title video module 1
+                </Link>
+              </li>
+            </ul>
+          </AccordionDetails>
+        </Accordion>
+      </div>
     </div>
   );
 }
