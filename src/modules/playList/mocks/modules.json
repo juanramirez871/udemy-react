@@ -1,0 +1,106 @@
+[
+    {
+        "id": 1,
+        "title": "module 1",
+        "videos": [
+            {
+                "position": 1,
+                "title": "video 1 video 1",
+                "isWatched": "false"
+            },
+            {
+                "position": 2,
+                "title": "video 2 video 2",
+                "isWatched": "false"
+            },
+            {
+                "position": 3,
+                "title": "video 3 video 3",
+                "isWatched": "true"
+            },
+            {
+                "position": 4,
+                "title": "video 4 video 4 module 1",
+                "isWatched": "true"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "module 2",
+        "videos": [
+            {
+                "position": 1,
+                "title": "video 1 video 1",
+                "isWatched": "false"
+            },
+            {
+                "position": 2,
+                "title": "video 2 video 2",
+                "isWatched": "false"
+            },
+            {
+                "position": 3,
+                "title": "video 3 video 3",
+                "isWatched": "false"
+            },
+            {
+                "position": 4,
+                "title": "video 4 video 4",
+                "isWatched": "false"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "title": "module 3",
+        "videos": [
+            {
+                "position": 1,
+                "title": "video 1 video 1",
+                "isWatched": "true"
+            },
+            {
+                "position": 2,
+                "title": "video 2 video 2",
+                "isWatched": "true"
+            },
+            {
+                "position": 3,
+                "title": "video 3 video 3",
+                "isWatched": "true"
+            },
+            {
+                "position": 4,
+                "title": "video 4 video 4",
+                "isWatched": "true"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "title": "module 4",
+        "videos": [
+            {
+                "position": 1,
+                "title": "video 1 video 1",
+                "isWatched": "false"
+            },
+            {
+                "position": 2,
+                "title": "video 2 video 2",
+                "isWatched": "false"
+            },
+            {
+                "position": 3,
+                "title": "video 3 video 3",
+                "isWatched": "true"
+            },
+            {
+                "position": 4,
+                "title": "video 4 video 4",
+                "isWatched": "true"
+            }
+        ]
+    }
+]
