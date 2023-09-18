@@ -5,7 +5,7 @@ class User {
   static login(req, res) {
       const user = { name: req.user.username, avatar: req.user.avatar };
       const token = jwt.sign(user, process.env.JWT_SECRET);
-      res.send('<script>window.opener.postMessage("success", "*"); window.close();</script>');
+      res.send(`<script>window.opener.postMessage(${JSON.stringify(req.user)}, "http://localhost:5173");</script>`);
   }
 
   static profile(req, res) {
