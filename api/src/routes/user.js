@@ -7,11 +7,11 @@ const router = Router();
 
 router
 
-    .get("/login", passport.authenticate("discord", { failureRedirect: "/" }) , User.login)
+    .get("/login", passport.authenticate("discord", { failureRedirect: "/user/login" }) , User.login)
+
+    .use(isAuth)
 
     .get("/logout", User.logout)
-    
-    .use(isAuth)
 
     .get("/profile", User.profile)
 
