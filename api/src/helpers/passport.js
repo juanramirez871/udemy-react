@@ -11,7 +11,7 @@ passport.use(new Strategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
     callbackURL: "http://localhost:3000/user/login",
-    scope: ["identify", "guilds", "avatar"]
+    scope: ["identify", "guilds"]
 }, (accesToken, refresToken, profile, cb) => {
 
     process.nextTick(() => {

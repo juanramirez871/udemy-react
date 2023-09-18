@@ -4,9 +4,8 @@ import routerUser from "./routes/user.js";
 import session  from "express-session";
 import passport from "passport";
 import "dotenv/config";
-const PORT = process.env.PORT || 3540;
+const PORT = process.env.PORT || 3000;
 const app = express();
-
 
 app
 
@@ -22,4 +21,4 @@ app
 
     .use("/user", routerUser)
 
-    .listen(() => console.log("server api run http://localhost:" + PORT))
+    .listen(PORT, () => console.log("server api run http://localhost:" + PORT))
