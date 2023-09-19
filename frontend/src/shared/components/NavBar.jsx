@@ -15,6 +15,7 @@ import perfilDefault from "../../assets/img/defaultPerfil.jpg";
 import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
+import request from "../helpers/request";
 
 const pages = ["course SQL Campus Lands"];
 const settings = ["Logout"];
@@ -34,7 +35,8 @@ function ResponsiveAppBar() {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = async() => {
+    console.log(await request({ endpoint: "user/profile" }))
     setAnchorElUser(null);
   };
 

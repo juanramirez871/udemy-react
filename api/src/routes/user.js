@@ -11,9 +11,10 @@ router
 
     .use(isAuth)
 
+    .get("/profile", User.profile)
+    
     .get("/logout", User.logout)
 
-    .get("/profile", User.profile)
 
 
 export default router

@@ -20,7 +20,6 @@ export default function Login() {
         window.addEventListener('message', (event) => {
             if(event.origin == "http://localhost:3000"){
                 if (event.data) {
-                    console.log("fdslkjfdskl")
                     popup?.close();
                     setsuccessUser(true)
                 }
