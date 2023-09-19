@@ -20,10 +20,9 @@ import Cookies from "js-cookie";
 const pages = ["course SQL Campus Lands"];
 const settings = ["Logout"];
 
-function ResponsiveAppBar() {
+function ResponsiveAppBar({ avatar, setIsAuth }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -37,6 +36,11 @@ function ResponsiveAppBar() {
 
   const handleCloseUserMenu = async () => {
     setAnchorElUser(null);
+  };
+
+  const logout = () => {
+    Cookies.remove("auth")
+    setIsAuth(false);
   };
 
   const Search = styled('div')(({ theme }) => ({
@@ -149,7 +153,7 @@ function ResponsiveAppBar() {
                 <Box sx={{ flexGrow: 0 }}>
                   <Tooltip title="Open settings">
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                      <Avatar alt="Remy Sharp" src={perfilDefault} />
+                      <Avatar alt="Remy Sharp" src={avatar ? avatar : perfilDefault} />
                     </IconButton>
                   </Tooltip>
                   <Menu
@@ -170,7 +174,7 @@ function ResponsiveAppBar() {
                   >
                     {settings.map((setting) => (
                       <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                        <Typography textAlign="center">{setting}</Typography>
+                        <Typography textAlign="center" onClick={logout} >{setting}</Typography>
                       </MenuItem>
                     ))}
                   </Menu>
