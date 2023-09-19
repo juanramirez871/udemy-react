@@ -20,7 +20,7 @@ import Cookies from "js-cookie";
 const pages = ["course SQL Campus Lands"];
 const settings = ["Logout"];
 
-function ResponsiveAppBar({ avatar, setIsAuth }) {
+function ResponsiveAppBar({ avatar, setIsAuth, setDataUser }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const handleOpenNavMenu = (event) => {
@@ -39,7 +39,8 @@ function ResponsiveAppBar({ avatar, setIsAuth }) {
   };
 
   const logout = () => {
-    Cookies.remove("auth")
+    Cookies.remove("auth");
+    setDataUser(false);
     setIsAuth(false);
   };
 

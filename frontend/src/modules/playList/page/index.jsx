@@ -3,7 +3,7 @@ import AccordionVideo from '../components/AccordionVideo';
 import DescriptionVideo from "../components/DescriptionVideo";
 import Comments from "../components/Comments";
 
-export default function PlayList({ dataUser }) {
+export default function PlayList({ dataUser, avatar }) {
 
     return (
         <>
@@ -11,7 +11,7 @@ export default function PlayList({ dataUser }) {
                 <div style={{ marginBottom: "20px" }}>
                     <SkeletonColor />
                     <DescriptionVideo />
-                    <Comments dataUser={dataUser} />
+                    <Comments dataUser={dataUser} avatar={avatar}/>
                 </div>
                 <AccordionVideo />
             </div>

@@ -6,33 +6,38 @@ import Footer from "./shared/components/footer";
 import Login from "./shared/pages/Login";
 import { useEffect, useState } from "react";
 import request from "./shared/helpers/request";
+import perfilDefault from "./assets/img/defaultPerfil.jpg";
 
 
 function App() {
 
   const [isAuth, setIsAuth] = useState(document.cookie == "auth=true");
   const [dataUser, setDataUser] = useState(false);
+  const [avatar, setAvatar] = useState(false);
   const shieldRoute = (Component) => isAuth ? Component : <Navigate to="/login" />
   useEffect(() => {
-
     (async () => {
-      if (dataUser == false) {
+      console.log("entrooo")
+      if (dataUser == false && isAuth) {
+        console.log(dataUser)
         const data = await request({ endpoint: "user/profile" })
+        if(data?.data.avatar) setAvatar(`https://cdn.discordapp.com/avatars/${data?.data.id}/${data?.data.avatar}.png`);
+        else setAvatar(perfilDefault);
         setDataUser(data);
       }
     })()
 
-  }, []);
+  }, [isAuth]);
 
   return (
     <>
       <BrowserRouter>
-        <NavBar avatar={dataUser?.data?.avatar} setIsAuth={setIsAuth} />
+        <NavBar avatar={avatar} setIsAuth={setIsAuth} setDataUser={setDataUser} />
         <div style={{ margin: "20px" }}>
           <Routes>
             <Route path="/" dataUser={dataUser?.data} element={shieldRoute(<Home />)} />
             <Route path="/login" element={isAuth ? <Navigate to="/" /> : <Login setIsAuth={setIsAuth} />} />
-            <Route path="/video/:id" element={shieldRoute(<PlayList dataUser={dataUser?.data} />)} />
+            <Route path="/video/:id" element={shieldRoute(<PlayList dataUser={dataUser?.data} avatar={avatar} />)} />
           </Routes>
         </div>
       </BrowserRouter>
