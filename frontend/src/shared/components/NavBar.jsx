@@ -36,7 +36,6 @@ function ResponsiveAppBar() {
   };
 
   const handleCloseUserMenu = async() => {
-    console.log(await request({ endpoint: "user/profile" }))
     setAnchorElUser(null);
   };
 

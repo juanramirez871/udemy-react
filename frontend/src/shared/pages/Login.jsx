@@ -2,10 +2,9 @@ import { Avatar, Box, Button, Typography } from "@mui/material";
 import discord from "../../assets/img/discord.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import request from "../helpers/request";
 import Cookies from "js-cookie";
 
-export default function Login() {
+export default function Login({ setIsAuth }) {
 
     const navigate = useNavigate();
     const [successUser, setsuccessUser] = useState(false);
@@ -18,9 +17,11 @@ export default function Login() {
         const popup = window.open('https://discord.com/oauth2/authorize?response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fuser%2Flogin&scope=identify%20guilds&client_id=1153335528494731387', 'Discord Login', 'width=800,height=600');
 
         window.addEventListener('message', (event) => {
-            if(event.origin == "http://localhost:3000"){
+            if (event.origin == "http://localhost:3000") {
                 if (event.data) {
+                    Cookies.set("auth", true)
                     popup?.close();
+                    setIsAuth(true);
                     setsuccessUser(true)
                 }
             }
