@@ -8,6 +8,7 @@ import Comment from "./Comment";
 import AvatarComment from "./AvatarComment";
 import contributions from "../mocks/contributions.json";
 import questions from "../mocks/questions.json";
+import perfilDefault from "../../../assets/img/defaultPerfil.jpg";
 
 function CustomTabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -42,12 +43,13 @@ function a11yProps(index) {
     };
 }
 
-export default function Comments() {
+export default function Comments({ dataUser }) {
 
     const [value, setValue] = React.useState(0);
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+    const imgUser = dataUser?.avatar ? dataUser?.avatar : perfilDefault
 
     return (
         <>
@@ -61,7 +63,7 @@ export default function Comments() {
                     </Box>
                     <CustomTabPanel value={value} index={0}>
                         <Typography style={{ fontSize: "25px" }}>2 Comments</Typography>
-                        <AvatarComment image="https://i.pinimg.com/564x/2a/0e/60/2a0e60be8475924e14c586acceacdb62.jpg" />
+                        <AvatarComment image={imgUser} />
                         {
                             contributions.length > 0
                             ?
@@ -72,7 +74,7 @@ export default function Comments() {
                     </CustomTabPanel>
                     <CustomTabPanel value={value} index={1}>
                         <Typography style={{ fontSize: "25px" }}>0 Comments</Typography>
-                        <AvatarComment image="https://i.pinimg.com/564x/2a/0e/60/2a0e60be8475924e14c586acceacdb62.jpg" />
+                        <AvatarComment image={imgUser} />
                         {
                             questions.length > 0
                             ?
