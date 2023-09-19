@@ -1,11 +1,12 @@
 import "dotenv/config";
-import jwt from "jsonwebtoken";
 
 class User {
   static login(req, res) {
-      const user = { name: req.user.username, avatar: req.user.avatar };
-      const token = jwt.sign(user, process.env.JWT_SECRET);
-      res.send(`<script>window.opener.postMessage(${JSON.stringify(req.user)}, "http://localhost:5173");</script>`);
+    res.send(
+      `<script>window.opener.postMessage(${JSON.stringify(
+        req.user
+      )}, "http://localhost:5173");</script>`
+    );
   }
 
   static profile(req, res) {
@@ -19,6 +20,11 @@ class User {
       }
       res.json({ msg: "logout session" });
     });
+  }
+
+  static isServerCampus(req, res) {
+    const response = req.user.guilds.find(el => el.id == "1101581994355347526")
+    res.json({ isAuth: response ? true : false });
   }
 }
 

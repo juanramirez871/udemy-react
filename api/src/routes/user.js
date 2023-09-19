@@ -15,6 +15,8 @@ router
     
     .get("/logout", User.logout)
 
+    .get("/camper", User.isServerCampus)
+
 
 
 export default router
