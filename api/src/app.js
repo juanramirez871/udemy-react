@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import routerUser from "./routes/user.js";
+import routerVideo from "./routes/video.js";
 import session  from "express-session";
 import passport from "passport";
 import "dotenv/config";
@@ -28,5 +29,7 @@ app
     .use(passport.session())
 
     .use("/user", routerUser)
+
+    .use("/video", routerVideo)
 
     .listen(PORT, () => console.log("server api run http://localhost:" + PORT))

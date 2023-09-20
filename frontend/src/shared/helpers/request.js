@@ -10,5 +10,7 @@ export default async function request({ endpoint, method = "GET", data, headers 
     if(data) config.body = data;
     if(headers) config.headers = headers
 
-    return await (await fetch('http://localhost:3000/' + endpoint, config)).json();
+    const response = await (await fetch('http://localhost:3000/' + endpoint, config)).json();
+    if(response?.msg == "Not authorized") Cookies.remove("auth");
+    else return response
 }

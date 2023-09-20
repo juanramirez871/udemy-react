@@ -17,10 +17,8 @@ function App() {
   const shieldRoute = (Component) => isAuth ? Component : <Navigate to="/login" />
   useEffect(() => {
     (async () => {
-      console.log("entrooo")
       if (dataUser == false && isAuth) {
-        console.log(dataUser)
-        const data = await request({ endpoint: "user/profile" })
+        const data = await request({ endpoint: "user/profile" });
         if(data?.data.avatar) setAvatar(`https://cdn.discordapp.com/avatars/${data?.data.id}/${data?.data.avatar}.png`);
         else setAvatar(perfilDefault);
         setDataUser(data);

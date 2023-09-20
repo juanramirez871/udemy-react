@@ -6,12 +6,11 @@ import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Link } from 'react-router-dom';
 import Checkbox from '@mui/material/Checkbox';
-import modules from "../mocks/modules.json";
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 
-export default function AccordionVideo() {
+export default function AccordionVideo({ modules }) {
 
   const [expanded, setExpanded] = React.useState(false);
   const handleChange = (panel) => (event, isExpanded) => {
@@ -32,7 +31,7 @@ export default function AccordionVideo() {
                   aria-controls="panel4bh-content"
                   id={"panel4bh-header" + i}
                 >
-                  <Typography sx={{ width: '33%', flexShrink: 0 }}>{chapter.title}</Typography>
+                  <Typography sx={{ width: '98%', flexShrink: 0 }}>{chapter.title}</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <ul>
@@ -40,14 +39,14 @@ export default function AccordionVideo() {
                       chapter.videos.map((video, i) => (
                         <li key={i}>
                             {
-                              video.isWatched == "true"
+                              video.seen
                               ?
                               <Checkbox { ...label } id={"checkbox" + i} color="success" checked />
                               :
                               <Checkbox { ...label } id={"checkbox" + i} color="success" />
                             }
                             <Link>
-                              { video.position }. { video.title }
+                              { i + 1 }. { video.title }
                             </Link>
                           </li>
                       ))
