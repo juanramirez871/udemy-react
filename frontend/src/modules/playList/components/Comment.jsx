@@ -1,4 +1,4 @@
-import { Avatar, Button, Typography } from "@mui/material";
+import { Avatar, Box, Button, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import AvatarComment from "./AvatarComment";
 
@@ -34,7 +34,15 @@ export default function Comment({ name, comment, timeAgo, avatar, responses = []
                     {
                         seeResponse &&
                         (
-                            <AvatarComment image="https://i.pinimg.com/564x/2a/0e/60/2a0e60be8475924e14c586acceacdb62.jpg" />
+                            <>
+                                <Box sx={{ display: 'flex', alignItems: 'flex-end', marginTop: "20px", width: "100%" }}>
+                                    <Avatar alt="Avatar" style={{ marginRight: "20px" }} src={image} />
+                                    <TextField style={{ width: "100%" }} id="input-with-sx" label="add a comment" variant="standard" />
+                                </Box>
+                                <div style={{ justifyContent: "end", display: "flex" }}>
+                                    <Button style={{ marginTop: "10px" }} size="medium">Publish</Button>
+                                </div>
+                            </>
                         )
                     }
                     {

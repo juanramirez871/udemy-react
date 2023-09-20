@@ -62,7 +62,7 @@ export default function Comments({ dataUser, avatar, comments }) {
         }
 
         await request({ endpoint: "video/comment/" + id, method: "POST", data: payload })
-        comments[0].push(payload)
+        comments[0].unshift(payload)
         setCommentContributions("");
     }
 
@@ -77,7 +77,7 @@ export default function Comments({ dataUser, avatar, comments }) {
         }
 
         await request({ endpoint: "video/comment/" + id, method: "POST", data: payload })
-        comments[1].push(payload)
+        comments[1].unshift(payload)
         setCommentQuestion("");
     }
 
