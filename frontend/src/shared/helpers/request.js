@@ -7,7 +7,7 @@ export default async function request({ endpoint, method = "GET", data, headers 
         headers: { "Content-Type": "application/json"},
         credentials: 'include',
     }
-    if(data) config.body = data;
+    if(data) config.body = JSON.stringify(data);
     if(headers) config.headers = headers
 
     const response = await (await fetch('http://localhost:3000/' + endpoint, config)).json();

@@ -10,5 +10,7 @@ router
 
     .get("/modules", Video.getModules)
 
+    .post("/comment/:idVideo", Video.postComment)
+
 
 export default router

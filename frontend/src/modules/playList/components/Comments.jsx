@@ -1,13 +1,12 @@
-import { Typography } from "@mui/material";
+import { Avatar, Button, TextField, Typography } from "@mui/material";
 import Box from '@mui/material/Box';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import React from "react";
 import Comment from "./Comment";
-import AvatarComment from "./AvatarComment";
-import contributions from "../mocks/contributions.json";
-import questions from "../mocks/questions.json";
+import request from "../../../shared/helpers/request";
+import { useParams } from "react-router-dom";
 
 function CustomTabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -45,9 +44,42 @@ function a11yProps(index) {
 export default function Comments({ dataUser, avatar, comments }) {
 
     const [value, setValue] = React.useState(0);
+    const [commentContributions, setCommentContributions] = React.useState("");
+    const [commentQuestion, setCommentQuestion] = React.useState("");
+    const { id } = useParams()
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
+    const postCommentC = async () => {
+
+        const payload = {
+            avatar: avatar,
+            timeAgo: Date.now(),
+            name: dataUser.username,
+            comment: commentContributions,
+            type: 0
+        }
+
+        await request({ endpoint: "video/comment/" + id, method: "POST", data: payload })
+        comments[0].push(payload)
+        setCommentContributions("");
+    }
+
+    const postCommentQ = async () => {
+
+        const payload = {
+            avatar: avatar,
+            timeAgo: Date.now(),
+            name: dataUser.username,
+            comment: commentQuestion,
+            type: 1
+        }
+
+        await request({ endpoint: "video/comment/" + id, method: "POST", data: payload })
+        comments[1].push(payload)
+        setCommentQuestion("");
+    }
 
     return (
         <>
@@ -60,25 +92,37 @@ export default function Comments({ dataUser, avatar, comments }) {
                         </Tabs>
                     </Box>
                     <CustomTabPanel value={value} index={0}>
-                        <Typography style={{ fontSize: "25px" }}>{ comments[0].length } Comments</Typography>
-                        <AvatarComment image={avatar} />
+                            <Typography style={{ fontSize: "25px" }}>{comments[0].length} Comments</Typography>
+                            <Box sx={{ display: 'flex', alignItems: 'flex-end', marginTop: "20px", width: "100%" }}>
+                                <Avatar alt="Avatar" style={{ marginRight: "20px" }} src={avatar} />
+                                <TextField style={{ width: "100%" }} id="input-with-sx" label="add a comment" value={commentContributions} variant="standard" onChange={(e) => setCommentContributions(e.target.value)} />
+                            </Box>
+                            <div style={{ justifyContent: "end", display: "flex" }}>
+                                <Button onClick={postCommentC} style={{ marginTop: "10px" }} size="medium" >Publish</Button>
+                            </div>
                         {
                             comments[0].length > 0
-                            ?
-                            comments[0].map(comment => <Comment {...comment} key={comment.id} />)
-                            :
-                            <Typography style={{ fontSize: "25px" }}>there are no comments 🥺</Typography>
+                                ?
+                                comments[0].map(comment => <Comment {...comment} key={comment.id} />)
+                                :
+                                <Typography style={{ fontSize: "25px" }}>there are no comments 🥺</Typography>
                         }
                     </CustomTabPanel>
                     <CustomTabPanel value={value} index={1}>
-                        <Typography style={{ fontSize: "25px" }}>{ comments[1].length } Comments</Typography>
-                        <AvatarComment image={avatar} />
+                            <Typography style={{ fontSize: "25px" }}>{comments[1].length} Comments</Typography>
+                            <Box sx={{ display: 'flex', alignItems: 'flex-end', marginTop: "20px", width: "100%" }}>
+                                <Avatar alt="Avatar" style={{ marginRight: "20px" }} src={avatar} />
+                                <TextField style={{ width: "100%" }} id="input-with-sx" label="add a comment" variant="standard" value={commentQuestion} onChange={(e) => setCommentQuestion(e.target.value)}  />
+                            </Box>
+                            <div style={{ justifyContent: "end", display: "flex" }}>
+                                <Button style={{ marginTop: "10px" }} size="medium" onClick={postCommentQ} >Publish</Button>
+                            </div>
                         {
                             comments[1].length > 0
-                            ?
-                            comments[1].map(comment => <Comment {...comment} key={comment.id} />)
-                            :
-                            <Typography style={{ fontSize: "25px" }}>there are no comments 🥺</Typography>
+                                ?
+                                comments[1].map(comment => <Comment {...comment} key={comment.id} />)
+                                :
+                                <Typography style={{ fontSize: "25px" }}>there are no comments 🥺</Typography>
                         }
                     </CustomTabPanel>
                 </Box>

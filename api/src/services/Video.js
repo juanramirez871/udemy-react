@@ -21,6 +21,12 @@ class Video {
       ]).toArray();
     return res.json({ data })
   }
+
+  static async postComment(req, res){
+
+    await Videos.updateOne({ _id: new ObjectId(req.params.idVideo) }, { $push: { comments: req.body } });
+    return res.json({ msg: "success" })
+  }
 }
 
 export default Video;
