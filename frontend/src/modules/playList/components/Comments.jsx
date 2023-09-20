@@ -42,7 +42,7 @@ function a11yProps(index) {
     };
 }
 
-export default function Comments({ dataUser, avatar }) {
+export default function Comments({ dataUser, avatar, comments }) {
 
     const [value, setValue] = React.useState(0);
     const handleChange = (event, newValue) => {
@@ -60,23 +60,23 @@ export default function Comments({ dataUser, avatar }) {
                         </Tabs>
                     </Box>
                     <CustomTabPanel value={value} index={0}>
-                        <Typography style={{ fontSize: "25px" }}>2 Comments</Typography>
+                        <Typography style={{ fontSize: "25px" }}>{ comments[0].length } Comments</Typography>
                         <AvatarComment image={avatar} />
                         {
-                            contributions.length > 0
+                            comments[0].length > 0
                             ?
-                            contributions.map(comment => <Comment {...comment} key={comment.id} />)
+                            comments[0].map(comment => <Comment {...comment} key={comment.id} />)
                             :
                             <Typography style={{ fontSize: "25px" }}>there are no comments 🥺</Typography>
                         }
                     </CustomTabPanel>
                     <CustomTabPanel value={value} index={1}>
-                        <Typography style={{ fontSize: "25px" }}>0 Comments</Typography>
+                        <Typography style={{ fontSize: "25px" }}>{ comments[1].length } Comments</Typography>
                         <AvatarComment image={avatar} />
                         {
-                            questions.length > 0
+                            comments[1].length > 0
                             ?
-                            questions.map(comment => <Comment {...comment} key={comment.id} />)
+                            comments[1].map(comment => <Comment {...comment} key={comment.id} />)
                             :
                             <Typography style={{ fontSize: "25px" }}>there are no comments 🥺</Typography>
                         }

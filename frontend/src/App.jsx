@@ -35,7 +35,7 @@ function App() {
           <Routes>
             <Route path="/" dataUser={dataUser?.data} element={shieldRoute(<Home />)} />
             <Route path="/login" element={isAuth ? <Navigate to="/" /> : <Login setIsAuth={setIsAuth} />} />
-            <Route path="/video/:id" element={shieldRoute(<PlayList dataUser={dataUser?.data} avatar={avatar} />)} />
+            <Route path="/video/:id/:moduleId" element={shieldRoute(<PlayList dataUser={dataUser?.data} avatar={avatar} />)} />
           </Routes>
         </div>
       </BrowserRouter>
