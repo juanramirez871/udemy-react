@@ -24,7 +24,7 @@ export default function PlayList({ dataUser, avatar }) {
             
             setComments([commentsDataContributions.reverse(), commentsDataQuestion.reverse()])
         })()
-    },[])
+    },[id, moduleId])
 
     return (
         <>
