@@ -6,11 +6,13 @@ const router = Router();
 
 router
 
-    .use(isAuth)
+    //.use(isAuth)
 
     .get("/modules", Video.getModules)
 
     .post("/comment/:idVideo", Video.postComment)
+
+    .post("/response/:idComment/:idVideo", Video.postResponse)
 
 
 export default router

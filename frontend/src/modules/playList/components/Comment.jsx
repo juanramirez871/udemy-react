@@ -1,5 +1,7 @@
 import { Avatar, Box, Button, TextField, Typography } from "@mui/material";
 import { useState } from "react";
+import request from "../../../shared/helpers/request";
+import { useParams } from "react-router-dom";
 
 const timeFormat = (date) => {
 
@@ -15,13 +17,32 @@ const timeFormat = (date) => {
     if(horas < 24) return `${horas} hours ago`;
 }
 
-export default function Comment({ name, comment, timeAgo, avatar, responses = [], buttons = true }) {
+export default function Comment({ name, comment, timeAgo, avatar, responses = [], buttons = true, image }) {
 
     const [seeAnswer, setSeeAnswer] = useState(false);
     const [seeResponse, setseeResponse] = useState(false);
     const seeAnswersChange = () => setSeeAnswer(!seeAnswer);
     const seeResponseChange = () => setseeResponse(!seeResponse);
-    const IsResponse = responses.length > 0;
+    const [IsResponse, setIsresponse] = useState(responses.length > 0);
+    const [response, setResponse] = useState(responses);
+    const [commentQuestion, setCommentQuestion] = useState("");
+    const { id } = useParams()
+    const postResponse = async() => {
+
+        const payload = {
+            avatar: avatar,
+            timeAgo: Date.now(),
+            name: name,
+            comment: commentQuestion,
+            type: 1
+        }
+        await request({ endpoint: `video/response/${timeAgo}/${id}`, method: "POST", data: payload });
+        setResponse([ ...response, payload ])
+        setIsresponse(true);
+        setCommentQuestion("");
+    }
+
+
 
     return (
         <>
@@ -40,7 +61,7 @@ export default function Comment({ name, comment, timeAgo, avatar, responses = []
                         (
                             <>
                                 <Button style={{ marginTop: "10px" }} size="medium" onClick={seeResponseChange}>Response</Button>
-                                <Button style={{ marginTop: "10px" }} size="medium" disabled={!IsResponse} onClick={seeAnswersChange}>see {responses.length} answers</Button>
+                                <Button style={{ marginTop: "10px" }} size="medium" disabled={!IsResponse} onClick={seeAnswersChange}>see {response.length} answers</Button>
                             </>
                         )
                     }
@@ -50,10 +71,10 @@ export default function Comment({ name, comment, timeAgo, avatar, responses = []
                             <>
                                 <Box sx={{ display: 'flex', alignItems: 'flex-end', marginTop: "20px", width: "100%" }}>
                                     <Avatar alt="Avatar" style={{ marginRight: "20px" }} src={image} />
-                                    <TextField style={{ width: "100%" }} id="input-with-sx" label="add a comment" variant="standard" />
+                                    <TextField value={commentQuestion} onChange={(e) => setCommentQuestion(e.target.value)} style={{ width: "100%" }} id="input-with-sx" label="add a comment" variant="standard" />
                                 </Box>
                                 <div style={{ justifyContent: "end", display: "flex" }}>
-                                    <Button style={{ marginTop: "10px" }} size="medium">Publish</Button>
+                                    <Button style={{ marginTop: "10px" }} onClick={postResponse} size="medium">Publish</Button>
                                 </div>
                             </>
                         )
@@ -61,7 +82,7 @@ export default function Comment({ name, comment, timeAgo, avatar, responses = []
                     {
                         seeAnswer &&
                         (
-                            responses.map((comment, i) => (
+                            response.map((comment, i) => (
                                 <Comment key={i} {...comment} buttons={false} />
                             ))
                         )

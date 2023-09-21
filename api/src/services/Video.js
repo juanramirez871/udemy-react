@@ -27,6 +27,20 @@ class Video {
     await Videos.updateOne({ _id: new ObjectId(req.params.idVideo) }, { $push: { comments: req.body } });
     return res.json({ msg: "success" })
   }
+
+  static async postResponse(req, res){
+
+    const a = await Videos.updateOne(
+      {
+         _id: new ObjectId(req.params.idVideo),
+         "comments.timeAgo": Number(req.params.idComment)
+      },
+         { $push: { "comments.$.responses": req.body } 
+      });
+    return res.json({ msg: "success", data: a })
+  }
+
 }
 
 export default Video;
+
