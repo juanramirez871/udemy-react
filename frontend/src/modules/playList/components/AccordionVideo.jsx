@@ -25,7 +25,7 @@ export default function AccordionVideo({ modules }) {
           &&
           (
             modules.map((chapter, i) => (
-              <Accordion key={chapter.id} expanded={expanded === 'panel' + i} onChange={handleChange('panel' + i)}>
+              <Accordion key={i} expanded={expanded === 'panel' + i} onChange={handleChange('panel' + i)}>
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel4bh-content"
