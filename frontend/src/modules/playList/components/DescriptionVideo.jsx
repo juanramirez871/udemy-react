@@ -3,22 +3,34 @@ import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import "../../../assets/css/descriptionVideo.css";
+import request from '../../../shared/helpers/request';
 
-export default function DescriptionVideo({ dataVideo }) {
+export default function DescriptionVideo({ dataVideo, idUser }) {
 
-    console.log(dataVideo)
     const [value, setValue] = React.useState(5);
-    const [like, setLike] = React.useState(false);
-    const [disLike, setDisLike] = React.useState(false);
+    const [like, setLike] = React.useState();
+    const [disLike, setDisLike] = React.useState();
 
-    const likePost = () => {
+    React.useEffect(() => {
+
+        if(dataVideo.likesPeople) setLike(dataVideo.likesPeople.includes(idUser));
+        if(dataVideo.disLikesPeople) setDisLike(dataVideo.disLikesPeople.includes(idUser));
+    }, [dataVideo])
+
+    const likePost = async() => {
+        await request({ endpoint: `video/like/${dataVideo._id}/${idUser}`, method: "DELETE" })
         setDisLike(false);
+
         setLike(!like);
+        await request({ endpoint: `video/like/${dataVideo._id}/${idUser}`, method: "PUT" })
     }
 
-    const disLikePost = () => {
+    const disLikePost = async() => {
+        await request({ endpoint: `video/like/${dataVideo._id}/${idUser}`, method: "DELETE" })
         setLike(false);
+
         setDisLike(!disLike);
+        await request({ endpoint: `video/dislike/${dataVideo._id}/${idUser}`, method: "PUT" })
     }
 
     return (
