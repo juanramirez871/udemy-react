@@ -61,6 +61,7 @@ export default function Comments({ dataUser, avatar, comments }) {
             type: 0
         }
 
+        if(commentContributions.length == 0) return;
         await request({ endpoint: "video/comment/" + id, method: "POST", data: payload })
         comments[0].unshift(payload)
         setCommentContributions("");
@@ -76,6 +77,7 @@ export default function Comments({ dataUser, avatar, comments }) {
             type: 1
         }
 
+        if(commentQuestion.length == 0) return;
         await request({ endpoint: "video/comment/" + id, method: "POST", data: payload })
         comments[1].unshift(payload)
         setCommentQuestion("");
@@ -83,7 +85,7 @@ export default function Comments({ dataUser, avatar, comments }) {
 
     return (
         <>
-            <div style={{ marginTop: "50px" }}>
+            <div style={{ marginTop: "20px" }}>
                 <Box sx={{ width: '100%' }}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
@@ -93,12 +95,12 @@ export default function Comments({ dataUser, avatar, comments }) {
                     </Box>
                     <CustomTabPanel value={value} index={0}>
                             <Typography style={{ fontSize: "25px" }}>{comments[0].length} Comments</Typography>
-                            <Box sx={{ display: 'flex', alignItems: 'flex-end', marginTop: "20px", width: "100%" }}>
+                            <Box sx={{ display: 'flex', alignItems: 'flex-end', marginTop: "10px", width: "100%" }}>
                                 <Avatar alt="Avatar" style={{ marginRight: "20px" }} src={avatar} />
                                 <TextField style={{ width: "100%" }} id="input-with-sx" label="add a comment" value={commentContributions} variant="standard" onChange={(e) => setCommentContributions(e.target.value)} />
                             </Box>
                             <div style={{ justifyContent: "end", display: "flex" }}>
-                                <Button onClick={postCommentC} style={{ marginTop: "10px" }} size="medium" >Publish</Button>
+                                <Button onClick={postCommentC} size="medium" >Publish</Button>
                             </div>
                         {
                             comments[0].length > 0
@@ -110,12 +112,12 @@ export default function Comments({ dataUser, avatar, comments }) {
                     </CustomTabPanel>
                     <CustomTabPanel value={value} index={1}>
                             <Typography style={{ fontSize: "25px" }}>{comments[1].length} Comments</Typography>
-                            <Box sx={{ display: 'flex', alignItems: 'flex-end', marginTop: "20px", width: "100%" }}>
+                            <Box sx={{ display: 'flex', alignItems: 'flex-end', marginTop: "10px", width: "100%" }}>
                                 <Avatar alt="Avatar" style={{ marginRight: "20px" }} src={avatar} />
                                 <TextField style={{ width: "100%" }} id="input-with-sx" label="add a comment" variant="standard" value={commentQuestion} onChange={(e) => setCommentQuestion(e.target.value)}  />
                             </Box>
                             <div style={{ justifyContent: "end", display: "flex" }}>
-                                <Button style={{ marginTop: "10px" }} size="medium" onClick={postCommentQ} >Publish</Button>
+                                <Button size="medium" onClick={postCommentQ} >Publish</Button>
                             </div>
                         {
                             comments[1].length > 0

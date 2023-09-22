@@ -36,6 +36,7 @@ export default function Comment({ name, comment, timeAgo, avatar, responses = []
             comment: commentQuestion,
             type: 1
         }
+        if(commentQuestion.length == 0) return;
         await request({ endpoint: `video/response/${timeAgo}/${id}`, method: "POST", data: payload });
         setResponse([ ...response, payload ])
         setIsresponse(true);
@@ -69,7 +70,7 @@ export default function Comment({ name, comment, timeAgo, avatar, responses = []
                         seeResponse &&
                         (
                             <>
-                                <Box sx={{ display: 'flex', alignItems: 'flex-end', marginTop: "20px", width: "100%" }}>
+                                <Box sx={{ display: 'flex', alignItems: 'flex-end', width: "100%" }}>
                                     <Avatar alt="Avatar" style={{ marginRight: "20px" }} src={image} />
                                     <TextField value={commentQuestion} onChange={(e) => setCommentQuestion(e.target.value)} style={{ width: "100%" }} id="input-with-sx" label="add a comment" variant="standard" />
                                 </Box>
