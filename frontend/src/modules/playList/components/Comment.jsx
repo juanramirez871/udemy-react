@@ -17,7 +17,7 @@ const timeFormat = (date) => {
     if(horas < 24) return `${horas} hours ago`;
 }
 
-export default function Comment({ name, comment, timeAgo, avatar, responses = [], buttons = true, image }) {
+export default function Comment({ name, comment, timeAgo, avatar, responses = [], buttons = true, image, dataUser }) {
 
     const [seeAnswer, setSeeAnswer] = useState(false);
     const [seeResponse, setseeResponse] = useState(false);
@@ -30,12 +30,13 @@ export default function Comment({ name, comment, timeAgo, avatar, responses = []
     const postResponse = async() => {
 
         const payload = {
-            avatar: avatar,
+            avatar: `https://cdn.discordapp.com/avatars/${dataUser.id}/${dataUser.avatar}.png`,
             timeAgo: Date.now(),
-            name: name,
+            name: dataUser.username,
             comment: commentQuestion,
             type: 1
         }
+        console.log(payload)
         if(commentQuestion.length == 0) return;
         await request({ endpoint: `video/response/${timeAgo}/${id}`, method: "POST", data: payload });
         setResponse([ ...response, payload ])

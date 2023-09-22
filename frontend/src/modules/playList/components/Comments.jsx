@@ -105,7 +105,7 @@ export default function Comments({ dataUser, avatar, comments }) {
                         {
                             comments[0].length > 0
                                 ?
-                                comments[0].map((comment, i) => <Comment image={avatar} {...comment} key={i} />)
+                                comments[0].map((comment, i) => <Comment image={avatar} {...comment} dataUser={dataUser} key={i} />)
                                 :
                                 <Typography style={{ fontSize: "25px" }}>there are no comments 🥺</Typography>
                         }
@@ -122,7 +122,7 @@ export default function Comments({ dataUser, avatar, comments }) {
                         {
                             comments[1].length > 0
                                 ?
-                                comments[1].map((comment, i) => <Comment image={avatar} {...comment} key={i} />)
+                                comments[1].map((comment, i) => <Comment image={avatar} {...comment} dataUser={dataUser} key={i} />)
                                 :
                                 <Typography style={{ fontSize: "25px" }}>there are no comments 🥺</Typography>
                         }
