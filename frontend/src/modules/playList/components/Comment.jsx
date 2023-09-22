@@ -17,7 +17,7 @@ const timeFormat = (date) => {
     if(horas < 24) return `${horas} hours ago`;
 }
 
-export default function Comment({ name, comment, timeAgo, avatar, responses = [], buttons = true, image, dataUser }) {
+export default function Comment({ name, comment, timeAgo, avatar, responses = [], buttons = true, image, dataUser, i }) {
 
     const [seeAnswer, setSeeAnswer] = useState(false);
     const [seeResponse, setseeResponse] = useState(false);
@@ -34,9 +34,8 @@ export default function Comment({ name, comment, timeAgo, avatar, responses = []
             timeAgo: Date.now(),
             name: dataUser.username,
             comment: commentQuestion,
-            type: 1
+            type: i
         }
-        console.log(payload)
         if(commentQuestion.length == 0) return;
         await request({ endpoint: `video/response/${timeAgo}/${id}`, method: "POST", data: payload });
         setResponse([ ...response, payload ])
@@ -67,6 +66,7 @@ export default function Comment({ name, comment, timeAgo, avatar, responses = []
                             </>
                         )
                     }
+                    
                     {
                         seeResponse &&
                         (

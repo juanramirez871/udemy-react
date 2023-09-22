@@ -9,12 +9,14 @@ import { useParams } from "react-router-dom";
 export default function PlayList({ dataUser, avatar }) {
 
     const [ modules, setModules ] = useState([]);
+    const [ d, newComment ] = useState(false);
     const [ comments, setComments ] = useState([[], []]);
     const [ video, setVideo ] = useState([[], []]);
     const { id, moduleId } = useParams()
     useEffect(() => {
 
         (async() => {
+            console.log("entrooooo")
             const modulesData = await request({ endpoint: "video/modules" });
             setModules(modulesData.data);
             const videoData = (modulesData.data[moduleId - 1].videos.find(el => el._id == id))
@@ -24,7 +26,7 @@ export default function PlayList({ dataUser, avatar }) {
             
             setComments([commentsDataContributions.reverse(), commentsDataQuestion.reverse()])
         })()
-    },[id, moduleId])
+    },[id, moduleId, d])
 
     return (
         <>
@@ -32,7 +34,7 @@ export default function PlayList({ dataUser, avatar }) {
                 <div style={{ marginBottom: "20px" }}>
                     <SkeletonColor />
                     <DescriptionVideo dataVideo={ video } idUser={dataUser?.id} />
-                    <Comments dataUser={dataUser} avatar={avatar} comments={comments} />
+                    <Comments newComment={newComment} d={d} dataUser={dataUser} avatar={avatar} comments={comments} />
                 </div>
                 <AccordionVideo modules={modules} />
             </div>
