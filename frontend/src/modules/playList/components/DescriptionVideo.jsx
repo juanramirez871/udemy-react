@@ -15,7 +15,10 @@ export default function DescriptionVideo({ dataVideo, idUser }) {
         if (dataVideo.disLikesPeople) setDisLike(dataVideo.disLikesPeople.includes(idUser));
     }, [dataVideo])
 
-    const likePost = async () => {
+    const likePost = async () => 
+    {
+        dataVideo.likesPeople.push(1);
+        dataVideo.disLikesPeople = dataVideo.disLikesPeople.filter(el => el != 1)
         setDisLike(false);
         setLike(!like);
         if (like && !disLike) return await request({ endpoint: `video/like/${dataVideo._id}/${idUser}`, method: "DELETE" });
@@ -24,6 +27,8 @@ export default function DescriptionVideo({ dataVideo, idUser }) {
     }
 
     const disLikePost = async () => {
+        dataVideo.disLikesPeople.push(1);
+        dataVideo.likesPeople = dataVideo.likesPeople.filter(el => el != 1)
         setLike(false);
         setDisLike(!disLike);
         if (disLike && !like) return await request({ endpoint: `video/dislike/${dataVideo._id}/${idUser}`, method: "DELETE" })
