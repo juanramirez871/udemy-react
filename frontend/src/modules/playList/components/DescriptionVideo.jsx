@@ -1,35 +1,33 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 import "../../../assets/css/descriptionVideo.css";
 import request from '../../../shared/helpers/request';
 
 export default function DescriptionVideo({ dataVideo, idUser }) {
 
-    const [value, setValue] = React.useState(5);
     const [like, setLike] = React.useState();
     const [disLike, setDisLike] = React.useState();
 
     React.useEffect(() => {
 
-        if(dataVideo.likesPeople) setLike(dataVideo.likesPeople.includes(idUser));
-        if(dataVideo.disLikesPeople) setDisLike(dataVideo.disLikesPeople.includes(idUser));
+        if (dataVideo.likesPeople) setLike(dataVideo.likesPeople.includes(idUser));
+        if (dataVideo.disLikesPeople) setDisLike(dataVideo.disLikesPeople.includes(idUser));
     }, [dataVideo])
 
-    const likePost = async() => {
-        await request({ endpoint: `video/like/${dataVideo._id}/${idUser}`, method: "DELETE" })
+    const likePost = async () => {
         setDisLike(false);
-
         setLike(!like);
+        if (like && !disLike) return await request({ endpoint: `video/like/${dataVideo._id}/${idUser}`, method: "DELETE" });
+        await request({ endpoint: `video/dislike/${dataVideo._id}/${idUser}`, method: "DELETE" })
         await request({ endpoint: `video/like/${dataVideo._id}/${idUser}`, method: "PUT" })
     }
 
-    const disLikePost = async() => {
-        await request({ endpoint: `video/like/${dataVideo._id}/${idUser}`, method: "DELETE" })
+    const disLikePost = async () => {
         setLike(false);
-
         setDisLike(!disLike);
+        if (disLike && !like) return await request({ endpoint: `video/dislike/${dataVideo._id}/${idUser}`, method: "DELETE" })
+        await request({ endpoint: `video/like/${dataVideo._id}/${idUser}`, method: "DELETE" })
         await request({ endpoint: `video/dislike/${dataVideo._id}/${idUser}`, method: "PUT" })
     }
 
@@ -41,10 +39,11 @@ export default function DescriptionVideo({ dataVideo, idUser }) {
                         <Typography component="h1" sx={{ fontSize: "30px", marginRight: "20px" }}>{dataVideo.title ? dataVideo.title : "No title"}</Typography>
                         <div style={{ marginTop: "5px" }}>
                             <button className={like && "green"} id="green" onClick={likePost}><i className="fa fa-thumbs-up fa-lg" aria-hidden="true"></i></button>
+                            <span style={{ marginRight: "10px" }}>{dataVideo?.likesPeople?.length}</span>
                             <button onClick={disLikePost} className={disLike && "red"} id="red"><i className="fa fa-thumbs-down fa-lg" aria-hidden="true"></i></button>
+                            <span style={{ marginRight: "10px" }}>{dataVideo?.disLikesPeople?.length}</span>
                         </div>
                     </div>
-                    <Rating name="read-only" value={value} readOnly />
                 </div>
             </Box>
         </div>
