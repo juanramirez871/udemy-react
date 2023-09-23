@@ -16,7 +16,6 @@ export default function PlayList({ dataUser, avatar }) {
     useEffect(() => {
 
         (async() => {
-            console.log("entrooooo")
             const modulesData = await request({ endpoint: "video/modules" });
             setModules(modulesData.data);
             const videoData = (modulesData.data[moduleId - 1].videos.find(el => el._id == id))
@@ -36,7 +35,7 @@ export default function PlayList({ dataUser, avatar }) {
                     <DescriptionVideo dataVideo={ video } idUser={dataUser?.id} />
                     <Comments newComment={newComment} d={d} dataUser={dataUser} avatar={avatar} comments={comments} />
                 </div>
-                <AccordionVideo modules={modules} />
+                <AccordionVideo modules={modules} idUser={dataUser?.id} />
             </div>
         </>
     )

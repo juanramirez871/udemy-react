@@ -58,9 +58,12 @@ class Video {
   }
 
   static async depostDislike(req, res) {
-
-    const dislike = await Videos.findOne({ _id: new ObjectId(req.params.idVideo) })
-    const newLikes = dislike.disLikesPeople.filter(el => el != req.params.idUser)
+    const dislike = await Videos.findOne({
+      _id: new ObjectId(req.params.idVideo),
+    });
+    const newLikes = dislike.disLikesPeople.filter(
+      (el) => el != req.params.idUser
+    );
 
     const a = await Videos.updateOne(
       {
@@ -72,8 +75,12 @@ class Video {
   }
 
   static async depostlike(req, res) {
-    const dislike = await Videos.findOne({ _id: new ObjectId(req.params.idVideo) })
-    const newLikes = dislike.likesPeople.filter(el => el != req.params.idUser)
+    const dislike = await Videos.findOne({
+      _id: new ObjectId(req.params.idVideo),
+    });
+    const newLikes = dislike.likesPeople.filter(
+      (el) => el != req.params.idUser
+    );
 
     const a = await Videos.updateOne(
       {
@@ -84,17 +91,32 @@ class Video {
     return res.json({ msg: "success", data: a });
   }
 
-  static seenChange = async(req, res) => {
-
-    console.log("🚀 ~ file: Video.js:94 ~ Video ~ seenChange=async ~ req.params.boolean:", req.params.boolean)
-    const a = await Videos.updateOne(
-      {
+  static seenChange = async (req, res) => {
+    if (req.params.boolean == "true") {
+      const a = await Videos.updateOne(
+        {
+          _id: new ObjectId(req.params.idVideo),
+        },
+        { $push: { seenPeople: req.user.id } }
+      );
+      return res.json({ msg: "success", data: a });
+    } else {
+      const dislike = await Videos.findOne({
         _id: new ObjectId(req.params.idVideo),
-      },
-      { $set: { seen: !req.params.boolean ? 0 : req.params.boolean } }
-    );
-    return res.json({ msg: "success", data: a });
-  }
+      });
+      const newLikes = dislike.seenPeople.filter(
+        (el) => el != req.user.id
+      );
+
+      const a = await Videos.updateOne(
+        {
+          _id: new ObjectId(req.params.idVideo),
+        },
+        { $set: { seenPeople: newLikes } }
+      );
+      return res.json({ msg: "success", data: a });
+    }
+  };
 }
 
 export default Video;

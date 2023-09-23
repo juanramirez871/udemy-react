@@ -1,5 +1,7 @@
 use("udemy-react");
 
+db.videos.updateMany({}, { $set: { seenPeople: [] } })
+
 //db.createCollection("videos");
 
 db.videos.insertMany([

@@ -22,6 +22,6 @@ router
 
     .delete("/like/:idVideo/:idUser", Video.depostlike)
 
-    .put("/seen/:idVideo/:boolean", Video.seenChange)
+    .put("/seen/:idVideo/:boolean/:idUser", Video.seenChange)
 
 export default router
