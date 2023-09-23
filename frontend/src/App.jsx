@@ -28,6 +28,16 @@ function App() {
             description: "Mejorar tus habilidades existentes de React.",
             img: "https://assets.vercel.com/image/upload/contentful/image/e5382hct74si/2EP14mWkbx9sq03nWnRSGT/f1d22d88bb5dde030275f9520c0f2e92/React_YT_Thumbnail.png"
         },
+        {
+          title: "Docker: Guía práctica de uso para desarrolladores",
+          description: "Aquí aprenderás Docker y para qué te puede servir, aprende a utilizar y crear imágenes, controlar el versionamiento y construcción automática de las mismas..",
+          img: "https://appmaster.io/api/_files/QsSz55Kp9QZnZyprJbMRcX/download/"
+      },
+      {
+        title: "GIT+GitHub: Todo un sistema de control de versiones de cero",
+        description: "Al finalizar el curso, sabrás Git, GitHub, Markdown, uso de repositorios, Wikis, Issues y mucho más.",
+        img: "https://aprenderbigdata.com/wp-content/uploads/1235212_3204_2-git.jpg"
+    },
     ]
 );
 
