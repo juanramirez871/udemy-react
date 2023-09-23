@@ -12,7 +12,6 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import perfilDefault from "../../assets/img/defaultPerfil.jpg";
-import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import Cookies from "js-cookie";
@@ -44,6 +43,7 @@ function ResponsiveAppBar({ avatar, setIsAuth, setDataUser }) {
     setDataUser(false);
     setIsAuth(false);
   };
+
 
   const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -147,15 +147,6 @@ function ResponsiveAppBar({ avatar, setIsAuth, setDataUser }) {
             Cookies.get("auth")
             && (
               <>
-                <Search style={{ marginRight: "20px" }}>
-                  <SearchIconWrapper>
-                    <SearchIcon />
-                  </SearchIconWrapper>
-                  <StyledInputBase
-                    placeholder="Search…"
-                    inputProps={{ 'aria-label': 'search' }}
-                  />
-                </Search>
 
                 <Box sx={{ flexGrow: 0 }}>
                   <Tooltip title="Open settings">
