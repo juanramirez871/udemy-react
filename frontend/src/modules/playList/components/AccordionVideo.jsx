@@ -4,10 +4,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { NavLink } from 'react-router-dom';
-import Checkbox from '@mui/material/Checkbox';
-
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+import { Chapter } from './Chapter';
 
 
 export default function AccordionVideo({ modules }) {
@@ -37,18 +34,7 @@ export default function AccordionVideo({ modules }) {
                   <ul>
                     {
                       chapter.videos.map((video, ii) => (
-                        <li key={ii}>
-                            {
-                              video.seen
-                              ?
-                              <Checkbox { ...label } id={"checkbox" + ii} color="success" checked />
-                              :
-                              <Checkbox { ...label } id={"checkbox" + ii} color="success" />
-                            }
-                            <NavLink to={`/video/${video._id}/${i + 1}`} replace={true}>
-                              { ii + 1 }. { video.title ? video.title : "no title" }
-                            </NavLink>
-                          </li>
+                        <Chapter key={ii} i={i} video={video} ii={ii} />
                       ))
                     }
                   </ul>

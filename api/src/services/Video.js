@@ -83,6 +83,18 @@ class Video {
     );
     return res.json({ msg: "success", data: a });
   }
+
+  static seenChange = async(req, res) => {
+
+    console.log("🚀 ~ file: Video.js:94 ~ Video ~ seenChange=async ~ req.params.boolean:", req.params.boolean)
+    const a = await Videos.updateOne(
+      {
+        _id: new ObjectId(req.params.idVideo),
+      },
+      { $set: { seen: !req.params.boolean ? 0 : req.params.boolean } }
+    );
+    return res.json({ msg: "success", data: a });
+  }
 }
 
 export default Video;

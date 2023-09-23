@@ -6,7 +6,7 @@ const router = Router();
 
 router
 
-    //.use(isAuth)
+    .use(isAuth)
 
     .get("/modules", Video.getModules)
 
@@ -22,5 +22,6 @@ router
 
     .delete("/like/:idVideo/:idUser", Video.depostlike)
 
+    .put("/seen/:idVideo/:boolean", Video.seenChange)
 
 export default router
