@@ -18,13 +18,13 @@ export default function MediaControlCard() {
   return (
     <>
       <Typography component="div" variant="h5" style={{ marginTop: "50px", marginBottom: "25px" }}>
-        Last video wached
+        Last course watched
       </Typography>
       <Card sx={{ display: 'flex', backgroundColor: "#2d2f31", justifyContent: "center", padding: "20px", boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2), -3px -3px 20px 5px rgba(0,0,0,0.14), 1px 5px 3px 0px rgba(0,0,0,0.12)" }}>
         <Box sx={{ display: 'flex', flexDirection: 'column', color: "white" }}>
           <CardContent sx={{ flex: '1 0 auto' }}>
             <Typography component="div" variant="h5">
-              Course SQL
+              Course Nodejs
             </Typography>
             <Typography variant="subtitle1" color="text.white" component="div">
               Chapter 2
@@ -55,7 +55,7 @@ export default function MediaControlCard() {
         <CardMedia
           component="img"
           sx={{ width: 151 }}
-          image="https://miro.medium.com/v2/resize:fit:1200/1*RK50G3R8xeRtANWAkJE6Mw.png"
+          image="https://www.muylinux.com/wp-content/uploads/2022/04/nodejs.png"
           alt="Course SQL"
           style={{ borderRadius: "10px" }}
         />

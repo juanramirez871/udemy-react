@@ -16,8 +16,9 @@ import SearchIcon from '@mui/icons-material/Search';
 import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import Cookies from "js-cookie";
+import { NavLink } from "react-router-dom";
 
-const pages = ["course SQL Campus Lands"];
+const pages = ["courses Campus Lands"];
 const settings = ["Logout"];
 
 function ResponsiveAppBar({ avatar, setIsAuth, setDataUser }) {
@@ -126,14 +127,19 @@ function ResponsiveAppBar({ avatar, setIsAuth, setDataUser }) {
             </Menu>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <Avatar
+            style={{ marginTop: "15px" }} 
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJHPXxVlrNq-SWYWW0dBYgTBFPQskIEVwo1QW9XcU6ATR9DxZ50t4r7t6kPt1M0tdUREQ&usqp=CAU" />
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "#fff", display: "block" }}
-              >
-                {page}
-              </Button>
+              <NavLink to="/">
+                <Button
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: "#fff", display: "block" }}
+                >
+                  {page}
+                </Button>
+              </NavLink>
             ))}
           </Box>
 

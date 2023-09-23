@@ -1,28 +1,33 @@
 import { Typography } from "@mui/material";
 import "../../../assets/css/videos.css"
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+
 
 export default function Videos({ dataVideos }) {
 
     return (
         <>
             <Typography component="div" variant="h5" style={{ marginTop: "50px", marginBottom: "25px" }}>
-                Videos most watched
+                Courses
             </Typography>
 
             <div className="ag-format-container">
-                <div className="ag-courses_box">
+                <div className="ag-courses_box" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
                     {
                         dataVideos.map((video, i) => (
-                            <div className="ag-courses_item" key={i}>
-                                <Link to="/video/1" className="ag-courses-item_link">
-                                    <div className="ag-courses-item_bg"></div>
-                                    <div className="ag-courses-item_title">
-                                        <Typography component="p" variant="h5" className="small-l">
-                                            { video.title }
-                                        </Typography>
-                                    </div>
-                                </Link>
+                            <div className="cards" key={i}>
+
+                                <div className="card">
+                                    <NavLink>
+                                        <div className="image">
+                                            <img src={video.img} />
+                                        </div>
+                                        <div className="content">
+                                            <Typography><b style={{ fontSize: "20px" , color: "black"}}>{video.title}</b></Typography>
+                                            <Typography style={{ color: "#222" }} >{video.description}</Typography>
+                                        </div>
+                                    </NavLink>
+                                </div>
                             </div>
                         ))
                     }
