@@ -15,7 +15,7 @@ export default function DescriptionVideo({ dataVideo, idUser }) {
         if (dataVideo.disLikesPeople) setDisLike(dataVideo.disLikesPeople.includes(idUser));
     }, [dataVideo])
 
-    const likePost = async () => 
+    const likePost = async () =>
     {
         dataVideo.likesPeople.push(1);
         dataVideo.disLikesPeople = dataVideo.disLikesPeople.filter(el => el != 1)
@@ -41,7 +41,7 @@ export default function DescriptionVideo({ dataVideo, idUser }) {
             <Box sx={{ '& > legend': { mt: 2 } }}>
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                     <div style={{ display: "flex", flexDirection: "row" }}>
-                        <Typography component="h1" sx={{ fontSize: "30px", marginRight: "20px" }}>{dataVideo.title ? dataVideo.title : "No title"}</Typography>
+                        <Typography component="h1" sx={{ fontSize: "30px", marginRight: "20px" }}>{dataVideo?.title ? dataVideo?.title : "No title"}</Typography>
                         <div style={{ marginTop: "5px" }}>
                             <button className={like && "green"} id="green" onClick={likePost}><i className="fa fa-thumbs-up fa-lg" aria-hidden="true"></i></button>
                             <span style={{ marginRight: "10px" }}>{dataVideo?.likesPeople?.length}</span>

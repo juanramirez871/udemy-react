@@ -7,7 +7,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Chapter } from './Chapter';
 import "../../../assets/css/loader.css"
 
-export default function AccordionVideo({ modules, idUser }) {
+export default function AccordionVideo({ setNameVideo, idUser, modulesDataApi }) {
 
   const [expanded, setExpanded] = React.useState(false);
   const handleChange = (panel) => (event, isExpanded) => {
@@ -18,23 +18,23 @@ export default function AccordionVideo({ modules, idUser }) {
     <div>
       <div style={{ marginBottom: "30px", position: "sticky", top: "20px" }} className='topA'>
         {
-          modules.length > 0
+          modulesDataApi.length > 0
             ?
             (
-              modules.map((chapter, i) => (
+              modulesDataApi.map((chapter, i) => (
                 <Accordion key={i} expanded={expanded === 'panel' + i} onChange={handleChange('panel' + i)}>
                   <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel4bh-content"
                     id={"panel4bh-header" + i}
                   >
-                    <Typography sx={{ width: '98%', flexShrink: 0 }}>{chapter.title}</Typography>
+                    <Typography sx={{ width: '98%', flexShrink: 0 }}>{chapter.sectionName}</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
                     <ul>
                       {
                         chapter.videos.map((video, ii) => (
-                          <Chapter key={ii} i={i} video={video} ii={ii} idUser={idUser} />
+                          <Chapter setNameVideo={setNameVideo} key={ii} i={i} video={video} ii={ii} idUser={idUser} />
                         ))
                       }
                     </ul>
