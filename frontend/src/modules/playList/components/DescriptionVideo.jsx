@@ -24,8 +24,9 @@ export default function DescriptionVideo({ dataVideo, idUser, videoC }) {
 
     const likePost = async () =>
     {
+        dataVideo.likesPeople = dataVideo.likesPeople.filter(el => el != 1 || el == idUser)
+        dataVideo.disLikesPeople = dataVideo.disLikesPeople.filter(el => el != 1 || el == idUser)
         dataVideo.likesPeople.push(1);
-        dataVideo.disLikesPeople = dataVideo.disLikesPeople.filter(el => el != 1)
         setDisLike(false);
         setLike(!like);
         if (like && !disLike) return await request({ endpoint: `video/like/${dataVideo._id}/${idUser}`, method: "DELETE", headers: { idVideo: quitarDiacriticos(id) } });
@@ -34,8 +35,9 @@ export default function DescriptionVideo({ dataVideo, idUser, videoC }) {
     }
 
     const disLikePost = async () => {
+        dataVideo.disLikesPeople = dataVideo.disLikesPeople.filter(el => el != 1 || el == idUser)
+        dataVideo.likesPeople = dataVideo.likesPeople.filter(el => el != 1 || el == idUser)
         dataVideo.disLikesPeople.push(1);
-        dataVideo.likesPeople = dataVideo.likesPeople.filter(el => el != 1)
         setLike(false);
         setDisLike(!disLike);
         if (disLike && !like) return await request({ endpoint: `video/dislike/${dataVideo._id}/${idUser}`, method: "DELETE", headers: { idVideo: quitarDiacriticos(id) } })
