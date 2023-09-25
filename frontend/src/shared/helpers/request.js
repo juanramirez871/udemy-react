@@ -8,7 +8,7 @@ export default async function request({ endpoint, method = "GET", data, headers 
         credentials: 'include',
     }
     if(data) config.body = JSON.stringify(data);
-    if(headers) config.headers = headers
+    if(headers) config.headers = { ...config.headers, ...headers }
 
     const response = await (await fetch('http://localhost:3000/' + endpoint, config)).json();
     if(response?.msg == "Not authorized") Cookies.remove("auth");

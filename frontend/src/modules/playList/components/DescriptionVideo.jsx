@@ -3,16 +3,23 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import "../../../assets/css/descriptionVideo.css";
 import request from '../../../shared/helpers/request';
+import { useParams } from 'react-router-dom';
 
-export default function DescriptionVideo({ dataVideo, idUser }) {
+
+function quitarDiacriticos(cadena) {
+    return cadena.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
+
+
+export default function DescriptionVideo({ dataVideo, idUser, videoC }) {
 
     const [like, setLike] = React.useState();
     const [disLike, setDisLike] = React.useState();
-
+    const { id } = useParams()
     React.useEffect(() => {
 
-        if (dataVideo.likesPeople) setLike(dataVideo.likesPeople.includes(idUser));
-        if (dataVideo.disLikesPeople) setDisLike(dataVideo.disLikesPeople.includes(idUser));
+        if (dataVideo.likesPeople) setLike(dataVideo?.likesPeople.includes(idUser));
+        if (dataVideo.disLikesPeople) setDisLike(dataVideo?.disLikesPeople.includes(idUser));
     }, [dataVideo])
 
     const likePost = async () =>
@@ -21,9 +28,9 @@ export default function DescriptionVideo({ dataVideo, idUser }) {
         dataVideo.disLikesPeople = dataVideo.disLikesPeople.filter(el => el != 1)
         setDisLike(false);
         setLike(!like);
-        if (like && !disLike) return await request({ endpoint: `video/like/${dataVideo._id}/${idUser}`, method: "DELETE" });
-        await request({ endpoint: `video/dislike/${dataVideo._id}/${idUser}`, method: "DELETE" })
-        await request({ endpoint: `video/like/${dataVideo._id}/${idUser}`, method: "PUT" })
+        if (like && !disLike) return await request({ endpoint: `video/like/${dataVideo._id}/${idUser}`, method: "DELETE", headers: { idVideo: quitarDiacriticos(id) } });
+        await request({ endpoint: `video/dislike/${dataVideo._id}/${idUser}`, method: "DELETE", headers: { idVideo: quitarDiacriticos(id) } })
+        await request({ endpoint: `video/like/${dataVideo._id}/${idUser}`, method: "PUT", headers: { idVideo: quitarDiacriticos(id) } })
     }
 
     const disLikePost = async () => {
@@ -31,9 +38,9 @@ export default function DescriptionVideo({ dataVideo, idUser }) {
         dataVideo.likesPeople = dataVideo.likesPeople.filter(el => el != 1)
         setLike(false);
         setDisLike(!disLike);
-        if (disLike && !like) return await request({ endpoint: `video/dislike/${dataVideo._id}/${idUser}`, method: "DELETE" })
-        await request({ endpoint: `video/like/${dataVideo._id}/${idUser}`, method: "DELETE" })
-        await request({ endpoint: `video/dislike/${dataVideo._id}/${idUser}`, method: "PUT" })
+        if (disLike && !like) return await request({ endpoint: `video/dislike/${dataVideo._id}/${idUser}`, method: "DELETE", headers: { idVideo: quitarDiacriticos(id) } })
+        await request({ endpoint: `video/like/${dataVideo._id}/${idUser}`, method: "DELETE", headers: { idVideo: quitarDiacriticos(id) } })
+        await request({ endpoint: `video/dislike/${dataVideo._id}/${idUser}`, method: "PUT", headers: { idVideo: quitarDiacriticos(id) } })
     }
 
     return (
@@ -41,7 +48,7 @@ export default function DescriptionVideo({ dataVideo, idUser }) {
             <Box sx={{ '& > legend': { mt: 2 } }}>
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                     <div style={{ display: "flex", flexDirection: "row" }}>
-                        <Typography component="h1" sx={{ fontSize: "30px", marginRight: "20px" }}>{dataVideo?.title ? dataVideo?.title : "No title"}</Typography>
+                        <Typography component="h1" sx={{ fontSize: "30px", marginRight: "20px" }}>{videoC ? videoC : "Introduccion"}</Typography>
                         <div style={{ marginTop: "5px" }}>
                             <button className={like && "green"} id="green" onClick={likePost}><i className="fa fa-thumbs-up fa-lg" aria-hidden="true"></i></button>
                             <span style={{ marginRight: "10px" }}>{dataVideo?.likesPeople?.length}</span>

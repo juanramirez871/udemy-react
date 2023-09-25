@@ -117,6 +117,11 @@ class Video {
       return res.json({ msg: "success", data: a });
     }
   };
+
+  static getVideo = async(req, res) => {
+
+    return res.json({ msg: "success", data: req.data });
+  }
 }
 
 export default Video;

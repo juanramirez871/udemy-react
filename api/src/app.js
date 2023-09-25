@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 const corsOptions = {
     origin: 'http://localhost:5173',
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    allowedHeaders: ['Content-Type', 'Authorization', "idVideo"],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
   };

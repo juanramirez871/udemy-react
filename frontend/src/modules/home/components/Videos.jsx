@@ -18,7 +18,7 @@ export default function Videos({ dataVideos }) {
                             <div className="cards" key={i}>
 
                                 <div className="card">
-                                    <NavLink to={`/video/:id/1/${video.name}`}>
+                                    <NavLink to={`/video/${video.video}/1/${video.name}`}>
                                         <div className="image">
                                             <img src={video.img} />
                                         </div>

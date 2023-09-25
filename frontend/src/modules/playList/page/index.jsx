@@ -11,33 +11,34 @@ export default function PlayList({ dataUser, avatar, dataVideos }) {
     const [ modules, setModules ] = useState([]);
     const [ d, newComment ] = useState(false);
     const [ comments, setComments ] = useState([[], []]);
-    const [ video, setVideo ] = useState([[], []]);
-    const { id, moduleId, course } = useParams()
+    const [ video, setVideo ] = useState({});
+    const { id, course, moduleId } = useParams()
+    const [ videoC, setVideoC ] = useState()
     const [ modulesDataApi, setModulesDataApi ] = useState({})
     const [ nameVideo, setNameVideo ] = useState([])
+
+    function quitarDiacriticos(cadena) {
+        return cadena.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+      }
+
     useEffect(() => {
 
         (async() => {
-            const modulesData = await request({ endpoint: "video/modules" });
             setModulesDataApi(await requestFull({ url: `http://192.168.128.23:5010/cursos?course=${course}` }));
-            setModules(modulesData.data);
-            const videoData = (modulesData.data[moduleId - 1].videos.find(el => el._id == id))
-            setVideo(videoData);
-            const commentsDataContributions = videoData?.comments.filter(el => el.type == 0)
-            const commentsDataQuestion = videoData?.comments.filter(el => el.type == 1)
-            setComments([commentsDataContributions?.reverse(), commentsDataQuestion?.reverse()])
+            const dataVideo = await request({ endpoint: `video`, headers: { idVideo: quitarDiacriticos(id) } });
+            setVideo(dataVideo.data);
         })()
-    },[id, moduleId, d])
+    },[id, d])
 
     return (
         <>
             <div className="flexPlayList">
                 <div style={{ marginBottom: "20px" }}>
                     <SkeletonColor nameVideo={nameVideo} oneVideo={dataVideos} />
-                    {/* <DescriptionVideo dataVideo={ video } idUser={dataUser?.id} /> */}
+                    <DescriptionVideo videoC={videoC} dataVideo={video} idUser={dataUser?.id} />
                     {/* <Comments newComment={newComment} d={d} dataUser={dataUser} avatar={avatar} comments={comments} /> */}
                 </div>
-                <AccordionVideo setNameVideo={setNameVideo} modulesDataApi={Object.values(modulesDataApi)} modules={modules} idUser={dataUser?.id} />
+                <AccordionVideo setVideoC={setVideoC} setNameVideo={setNameVideo} modulesDataApi={Object.values(modulesDataApi)} idUser={dataUser?.id} />
             </div>
         </>
     )

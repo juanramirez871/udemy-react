@@ -1,12 +1,17 @@
 import { Router } from "express";
 import { isAuth } from "../middlewares/auth.js";
 import Video from "../services/Video.js";
+import { isVideo } from "../middlewares/isVideo.js";
 const router = Router();
 
 
 router
 
     .use(isAuth)
+
+    .use(isVideo)
+
+    .get("/", Video.getVideo)
 
     .get("/modules", Video.getModules)
 

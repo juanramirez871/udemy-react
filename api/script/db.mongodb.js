@@ -11,15 +11,10 @@ db.videos.insertMany([
     urlVideo: "",
     comments: [],
     title: "",
-    likes: 0,
-    dislikes: 0,
-    seen: false,
+    likesPeople: [],
+    dislikesPeople: [],
+    seenPeople: false,
     timesSeen: 0,
     lastWached: "",
   },
-
-  
-  
-
-  
 ]);

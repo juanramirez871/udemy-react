@@ -7,7 +7,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Chapter } from './Chapter';
 import "../../../assets/css/loader.css"
 
-export default function AccordionVideo({ setNameVideo, idUser, modulesDataApi }) {
+export default function AccordionVideo({ setNameVideo, idUser, modulesDataApi, setVideoC }) {
 
   const [expanded, setExpanded] = React.useState(false);
   const handleChange = (panel) => (event, isExpanded) => {
@@ -34,7 +34,7 @@ export default function AccordionVideo({ setNameVideo, idUser, modulesDataApi })
                     <ul>
                       {
                         chapter.videos.map((video, ii) => (
-                          <Chapter setNameVideo={setNameVideo} key={ii} i={i} video={video} ii={ii} idUser={idUser} />
+                          <Chapter setVideoC={setVideoC} setNameVideo={setNameVideo} key={ii} i={i} video={video} ii={ii} idUser={idUser} />
                         ))
                       }
                     </ul>
