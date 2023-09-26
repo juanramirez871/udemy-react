@@ -6,7 +6,7 @@ export default function Index({ dataVideos }) {
 
     return (
         <>
-            <MediaControlCard />
+            <MediaControlCard dataVideos={dataVideos} />
             <div style={{ marginBottom: "100px" }}>
                 <Videos dataVideos={dataVideos} />
             </div>

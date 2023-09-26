@@ -122,6 +122,19 @@ class Video {
       return res.json({ msg: "success", data: a });
     }
   };
+
+  static lastVideo = async(req, res) => {
+
+    await Videos.updateMany({}, { $set: { lastWached: false } })
+    await Videos.updateOne({ _id: new ObjectId(req.params.id) }, { $set: { lastWached: true } })
+    return res.json({ msg: "success", data: true });
+  }
+
+  static last = async(req, res) => {
+
+    const a = await Videos.findOne({ lastWached: true })
+    return res.json({ msg: "success", data: a });
+  }
 }
 
 export default Video;

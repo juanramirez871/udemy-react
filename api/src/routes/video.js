@@ -10,6 +10,8 @@ router
 
     .get("/modules", Video.getModules)
 
+    .get("/seenn", Video.last)
+
     .post("/comment/:idVideo", Video.postComment)
 
     .post("/response/:idComment/:idVideo", Video.postResponse)
@@ -23,5 +25,7 @@ router
     .delete("/like/:idVideo/:idUser", Video.depostlike)
 
     .put("/seen/:idVideo/:boolean/:idUser", Video.seenChange)
+
+    .put("/seen/:id", Video.lastVideo)
 
 export default router

@@ -11,55 +11,68 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import { Tooltip } from '@mui/material';
 import { Link } from 'react-router-dom';
+import request from '../../../shared/helpers/request';
 
-export default function MediaControlCard() {
+export default function MediaControlCard({ dataVideos }) {
   const theme = useTheme();
+  const [lastVideo, setLastVideo] = React.useState();
+
+  React.useEffect(() => {
+
+    (async () => {
+      const a = await request({ endpoint: "video/seenn" })
+      const img = dataVideos.find(el => el.course == a.data?.nameCourse)
+      setLastVideo({ img: img.img, ...a.data })
+    })()
+  }, [])
 
   return (
     <>
-      <Typography component="div" variant="h5" style={{ marginTop: "50px", marginBottom: "25px" }}>
-        Last course watched
-      </Typography>
-      <Card sx={{ display: 'flex', backgroundColor: "#2d2f31", justifyContent: "center", padding: "20px", boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2), -3px -3px 20px 5px rgba(0,0,0,0.14), 1px 5px 3px 0px rgba(0,0,0,0.12)" }}>
-        <Box sx={{ display: 'flex', flexDirection: 'column', color: "white" }}>
-          <CardContent sx={{ flex: '1 0 auto' }}>
-            <Typography component="div" variant="h5">
-              Course Nodejs
+      {
+        lastVideo ?
+          <>
+            <Typography component="div" variant="h5" style={{ marginTop: "50px", marginBottom: "25px" }}>
+              Last course watched
             </Typography>
-            <Typography variant="subtitle1" color="text.white" component="div">
-              Chapter 2
+            <Card sx={{ display: 'flex', backgroundColor: "#2d2f31", justifyContent: "center", padding: "20px", boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2), -3px -3px 20px 5px rgba(0,0,0,0.14), 1px 5px 3px 0px rgba(0,0,0,0.12)" }}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', color: "white" }}>
+                <CardContent sx={{ flex: '1 0 auto' }}>
+                  <Typography component="div" variant="h5">
+                    Course {lastVideo?.nameCourse ? lastVideo?.nameCourse : "Nodejs"}
+                  </Typography>
+                </CardContent>
+                <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1, justifyContent: "center" }}>
+                  <IconButton aria-label="play/pause" style={{ justifyContent: "center" }}>
+                    <Link to={`/video/${lastVideo?._id}/1/${lastVideo?.nameCourse}`}>
+                      <PlayArrowIcon sx={{ height: 38, width: 38, color: "white" }} />
+                    </Link>
+                  </IconButton>
+                </Box>
+              </Box>
+              <CardMedia
+                component="img"
+                sx={{ width: 151 }}
+                image={lastVideo?.img}
+                style={{ borderRadius: "10px" }}
+              />
+            </Card>
+          </>
+          :
+          <>
+            <Typography component="div" variant="h5" style={{ marginTop: "50px", marginBottom: "25px" }}>
+              Last course watched
             </Typography>
-          </CardContent>
-          <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1 }}>
-            <IconButton aria-label="previous">
-              <Link to="video/1">
-                <Tooltip title="chapter 1">
-                  {theme.direction === 'rtl' ? <SkipNextIcon /> : <SkipPreviousIcon style={{ color: "white" }} />}
-                </Tooltip>
-              </Link>
-            </IconButton>
-            <IconButton aria-label="play/pause">
-              <Link to="video/1">
-              <PlayArrowIcon sx={{ height: 38, width: 38, color: "white" }} />
-            </Link>
-            </IconButton>
-            <IconButton aria-label="next">
-              <Link to="video/1">
-                <Tooltip title="chapter 3">
-                  {theme.direction === 'rtl' ? <SkipPreviousIcon /> : <SkipNextIcon style={{ color: "white" }} />}
-                </Tooltip>
-              </Link>
-            </IconButton>
-          </Box>
-        </Box>
-        <CardMedia
-          component="img"
-          sx={{ width: 151 }}
-          image="https://www.muylinux.com/wp-content/uploads/2022/04/nodejs.png"
-          alt="Course SQL"
-          style={{ borderRadius: "10px" }}
-        />
-      </Card>
+            <Card sx={{ display: 'flex', backgroundColor: "#2d2f31", justifyContent: "center", padding: "20px", boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2), -3px -3px 20px 5px rgba(0,0,0,0.14), 1px 5px 3px 0px rgba(0,0,0,0.12)" }}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', color: "white" }}>
+                <CardContent sx={{ flex: '1 0 auto' }}>
+                  <Typography component="div" variant="h5">
+                  You don't have last seen course 😣
+                  </Typography>
+                </CardContent>
+              </Box>
+            </Card>
+          </>
+      }
     </>
   );
 }
