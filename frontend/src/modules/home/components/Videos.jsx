@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import "../../../assets/css/videos.css"
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 
 
 export default function Videos({ dataVideos }) {
@@ -18,7 +18,7 @@ export default function Videos({ dataVideos }) {
                             <div className="cards" key={i}>
 
                                 <div className="card">
-                                    <NavLink>
+                                    <NavLink to={`/video/${video._id}/1/${video.course}`}>
                                         <div className="image">
                                             <img src={video.img} />
                                         </div>

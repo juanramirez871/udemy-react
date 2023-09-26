@@ -7,6 +7,11 @@ class Video {
   static async getModules(req, res) {
     const data = await Videos.aggregate([
       {
+        $match: {
+          nameCourse: req.query.nameCourse
+        }
+      },
+      {
         $group: {
           _id: "$module",
           title: { $first: "$modulName" },

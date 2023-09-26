@@ -12,17 +12,16 @@ export default function PlayList({ dataUser, avatar }) {
     const [ d, newComment ] = useState(false);
     const [ comments, setComments ] = useState([[], []]);
     const [ video, setVideo ] = useState([[], []]);
-    const { id, moduleId } = useParams()
+    const { id, moduleId, course } = useParams()
     useEffect(() => {
 
         (async() => {
-            const modulesData = await request({ endpoint: "video/modules" });
+            const modulesData = await request({ endpoint: `video/modules?nameCourse=${course}` });
             setModules(modulesData.data);
             const videoData = (modulesData.data[moduleId - 1].videos.find(el => el._id == id))
             setVideo(videoData);
             const commentsDataContributions = videoData.comments.filter(el => el.type == 0)
             const commentsDataQuestion = videoData.comments.filter(el => el.type == 1)
-            
             setComments([commentsDataContributions.reverse(), commentsDataQuestion.reverse()])
         })()
     },[id, moduleId, d])
@@ -31,7 +30,7 @@ export default function PlayList({ dataUser, avatar }) {
         <>
             <div className="flexPlayList">
                 <div style={{ marginBottom: "20px" }}>
-                    <SkeletonColor />
+                    <SkeletonColor dataVideo={ video } />
                     <DescriptionVideo dataVideo={ video } idUser={dataUser?.id} />
                     <Comments newComment={newComment} d={d} dataUser={dataUser} avatar={avatar} comments={comments} />
                 </div>

@@ -16,27 +16,37 @@ function App() {
         {
             title: "Node.js: De cero a experto",
             description: "Aprende Node.js desde los fundamentos, despliegues, construcción de imágenes, testing",
-            img: "https://www.muylinux.com/wp-content/uploads/2022/04/nodejs.png"
+            img: "https://www.muylinux.com/wp-content/uploads/2022/04/nodejs.png",
+            _id: "6513389b366f4d815a163ebe",
+            course: "nodejs",
         },
         {
             title: "SQL de cero: Tu guía práctica con PostgreSQL",
             description: "Aprende sobre bases de datos relacionales partiendo desde cero",
-            img: "https://cursin.net/wp-content/uploads/2023/07/sql-analisis-negocio-cursin.jpg"
+            img: "https://cursin.net/wp-content/uploads/2023/07/sql-analisis-negocio-cursin.jpg",
+            _id: "651337f1366f4d815a163d13",
+            course: "sql",
         },
         {
             title: "React PRO: Lleva tus bases al siguiente nivel",
             description: "Mejorar tus habilidades existentes de React.",
-            img: "https://assets.vercel.com/image/upload/contentful/image/e5382hct74si/2EP14mWkbx9sq03nWnRSGT/f1d22d88bb5dde030275f9520c0f2e92/React_YT_Thumbnail.png"
+            img: "https://assets.vercel.com/image/upload/contentful/image/e5382hct74si/2EP14mWkbx9sq03nWnRSGT/f1d22d88bb5dde030275f9520c0f2e92/React_YT_Thumbnail.png",
+            _id: "6513394f751697f0ca83212a",
+            course: "react",
         },
         {
           title: "Docker: Guía práctica de uso para desarrolladores",
           description: "Aquí aprenderás Docker y para qué te puede servir, aprende a utilizar y crear imágenes, controlar el versionamiento y construcción automática de las mismas..",
-          img: "https://appmaster.io/api/_files/QsSz55Kp9QZnZyprJbMRcX/download/"
+          img: "https://appmaster.io/api/_files/QsSz55Kp9QZnZyprJbMRcX/download/",
+          _id: "6513383f366f4d815a163dc8",
+          course: "docker",
       },
       {
         title: "GIT+GitHub: Todo un sistema de control de versiones de cero",
         description: "Al finalizar el curso, sabrás Git, GitHub, Markdown, uso de repositorios, Wikis, Issues y mucho más.",
-        img: "https://aprenderbigdata.com/wp-content/uploads/1235212_3204_2-git.jpg"
+        img: "https://aprenderbigdata.com/wp-content/uploads/1235212_3204_2-git.jpg",
+        _id: "65133889366f4d815a163e4d",
+        course: "git",
     },
     ]
 );
@@ -65,11 +75,11 @@ function App() {
           <Routes>
             <Route path="/" dataUser={dataUser?.data} element={shieldRoute(<Home dataVideos={dataVideos} />)} />
             <Route path="/login" element={isAuth ? <Navigate to="/" /> : <Login setIsAuth={setIsAuth} />} />
-            <Route path="/video/:id/:moduleId" element={shieldRoute(<PlayList dataUser={dataUser?.data} avatar={avatar} />)} />
+            <Route path="/video/:id/:moduleId/:course" element={shieldRoute(<PlayList dataUser={dataUser?.data} avatar={avatar} />)} />
           </Routes>
         </div>
       </BrowserRouter>
-      <Footer />
+      <Footer isAuth={isAuth} />
     </>
   )
 }

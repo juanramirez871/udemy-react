@@ -47,7 +47,7 @@ export default function Comment({ name, comment, timeAgo, avatar, responses = []
 
     return (
         <>
-            <div style={{ display: "grid", marginTop: "20px", gridTemplateColumns: "60px 1fr", }}>
+            <div style={{ display: "grid", gridTemplateColumns: "60px 1fr", }}>
                 <Avatar alt="Avatar" style={{ marginRight: "20px" }} src={avatar} />
                 <div>
                     <div style={{ display: "flex" }}>
@@ -66,7 +66,7 @@ export default function Comment({ name, comment, timeAgo, avatar, responses = []
                             </>
                         )
                     }
-                    
+
                     {
                         seeResponse &&
                         (
