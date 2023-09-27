@@ -12,7 +12,7 @@ router
     .use(isAuth)
 
     .get("/profile", User.profile)
-    
+
     .get("/logout", User.logout)
 
     .get("/camper", User.isServerCampus)

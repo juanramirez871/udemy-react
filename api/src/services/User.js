@@ -5,7 +5,7 @@ class User {
     res.send(
       `<script>window.opener.postMessage(${JSON.stringify(
         req.user
-      )}, "http://localhost:5173");</script>`
+      )}, "http://192.168.129.72:5056");</script>`
     );
   }
 

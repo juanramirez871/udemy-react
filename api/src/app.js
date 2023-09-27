@@ -8,7 +8,7 @@ import "dotenv/config";
 const PORT = process.env.PORT || 3000;
 const app = express();
 const corsOptions = {
-    origin: 'http://localhost:5173',
+    origin: 'http://192.168.129.72:5056',
     allowedHeaders: ['Content-Type', 'Authorization'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
@@ -32,4 +32,4 @@ app
 
     .use("/video", routerVideo)
 
-    .listen(PORT, () => console.log("server api run http://localhost:" + PORT))
+    .listen(PORT, () => console.log("server api run http://192.168.129.72:" + PORT))

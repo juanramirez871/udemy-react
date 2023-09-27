@@ -18,7 +18,7 @@ export default function Login({ setIsAuth }) {
         const popup = window.open('https://discord.com/oauth2/authorize?response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fuser%2Flogin&scope=identify%20guilds&client_id=1153335528494731387', 'Discord Login', 'width=800,height=600');
 
         window.addEventListener('message', async (event) => {
-            if (event.origin == "http://localhost:3000") {
+            if (event.origin == "http://192.168.129.72:5057") {
                 if (event.data) {
                     popup?.close();
                     const isCamper = await request({ endpoint: "user/camper" })
