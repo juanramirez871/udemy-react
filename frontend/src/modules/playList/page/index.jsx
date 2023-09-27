@@ -22,9 +22,12 @@ export default function PlayList({ dataUser, avatar }) {
             setVideo(videoData);
             const commentsDataContributions = videoData.comments.filter(el => el.type == 0)
             const commentsDataQuestion = videoData.comments.filter(el => el.type == 1)
-            setComments([commentsDataContributions.reverse(), commentsDataQuestion.reverse()])
+            setComments([commentsDataContributions.reverse(), commentsDataQuestion.reverse()]);
+            if(dataUser?.id){
+                await request({ endpoint: `video/seen/${dataUser?.id}/${course}`, method: "PUT" })
+            }
         })()
-    },[id, moduleId, d])
+    },[id, moduleId, d, dataUser])
 
     return (
         <>

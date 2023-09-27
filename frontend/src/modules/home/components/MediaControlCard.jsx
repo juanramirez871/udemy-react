@@ -6,25 +6,23 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
-import { Tooltip } from '@mui/material';
 import { Link } from 'react-router-dom';
 import request from '../../../shared/helpers/request';
 
-export default function MediaControlCard({ dataVideos }) {
-  const theme = useTheme();
+export default function MediaControlCard({ dataVideos, dataUser }) {
   const [lastVideo, setLastVideo] = React.useState();
 
   React.useEffect(() => {
 
     (async () => {
-      const a = await request({ endpoint: "video/seenn" })
-      const img = dataVideos.find(el => el.course == a.data?.nameCourse)
-      setLastVideo({ img: img.img, ...a.data })
+      if (dataUser?.id) {
+        const a = await request({ endpoint: `video/seenn/${dataUser?.id}` })
+        const img = dataVideos.find(el => el.course == a.data?.lastCourse)
+        setLastVideo({ img: img.img, ...a.data, _id: img._id })
+      }
     })()
-  }, [])
+  }, [dataUser])
 
   return (
     <>
@@ -38,12 +36,12 @@ export default function MediaControlCard({ dataVideos }) {
               <Box sx={{ display: 'flex', flexDirection: 'column', color: "white" }}>
                 <CardContent sx={{ flex: '1 0 auto' }}>
                   <Typography component="div" variant="h5">
-                    Course {lastVideo?.nameCourse ? lastVideo?.nameCourse : "Nodejs"}
+                    Course {lastVideo?.lastCourse ? lastVideo?.lastCourse : "Nodejs"}
                   </Typography>
                 </CardContent>
                 <Box sx={{ display: 'flex', alignItems: 'center', pl: 1, pb: 1, justifyContent: "center" }}>
                   <IconButton aria-label="play/pause" style={{ justifyContent: "center" }}>
-                    <Link to={`/video/${lastVideo?._id}/1/${lastVideo?.nameCourse}`}>
+                    <Link to={`/video/${lastVideo?._id}/1/${lastVideo?.lastCourse}`}>
                       <PlayArrowIcon sx={{ height: 38, width: 38, color: "white" }} />
                     </Link>
                   </IconButton>
@@ -66,7 +64,7 @@ export default function MediaControlCard({ dataVideos }) {
               <Box sx={{ display: 'flex', flexDirection: 'column', color: "white" }}>
                 <CardContent sx={{ flex: '1 0 auto' }}>
                   <Typography component="div" variant="h5">
-                  You don't have last seen course 😣
+                    You don't have last seen course 😣
                   </Typography>
                 </CardContent>
               </Box>

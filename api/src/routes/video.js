@@ -10,7 +10,7 @@ router
 
     .get("/modules", Video.getModules)
 
-    .get("/seenn", Video.last)
+    .get("/seenn/:idUser", Video.last)
 
     .post("/comment/:idVideo", Video.postComment)
 
@@ -26,6 +26,6 @@ router
 
     .put("/seen/:idVideo/:boolean/:idUser", Video.seenChange)
 
-    .put("/seen/:id", Video.lastVideo)
+    .put("/seen/:idUser/:course", Video.lastVideo)
 
 export default router

@@ -1,14 +1,8 @@
 import { Typography } from "@mui/material";
 import "../../../assets/css/videos.css"
 import { NavLink, useParams } from "react-router-dom";
-import request from "../../../shared/helpers/request";
 
 export default function Videos({ dataVideos }) {
-
-    const lastCourse = async(id) => {
-
-        await request({ endpoint: `video/seen/${id}`, method: "PUT" })
-    }
     return (
         <>
             <Typography component="div" variant="h5" style={{ marginTop: "50px", marginBottom: "25px" }}>

@@ -2,6 +2,7 @@ import "dotenv/config";
 import db from "../config/db.js";
 import { ObjectId } from "mongodb";
 const Videos = db.getInstance().connect();
+const User = db.getInstance().changeCollection("user").connect();
 
 class Video {
   static async getModules(req, res) {
@@ -125,14 +126,19 @@ class Video {
 
   static lastVideo = async(req, res) => {
 
-    await Videos.updateMany({}, { $set: { lastWached: false } })
-    await Videos.updateOne({ _id: new ObjectId(req.params.id) }, { $set: { lastWached: true } })
-    return res.json({ msg: "success", data: true });
+    const user = await User.findOne({ idUser: req.params.idUser });
+    if(!user){
+      const a = await User.insertOne({ idUser: req.params.idUser, lastCourse: req.params.course });
+      return res.json({ msg: "success", data: a });
+    }else{
+      const a = await User.updateOne({ idUser: req.params.idUser }, { $set: { lastCourse: req.params.course } });
+      return res.json({ msg: "success", data: a });
+    }
   }
 
   static last = async(req, res) => {
 
-    const a = await Videos.findOne({ lastWached: true })
+    const a = await User.findOne({ idUser: req.params.idUser });
     return res.json({ msg: "success", data: a });
   }
 }

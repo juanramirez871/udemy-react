@@ -73,7 +73,7 @@ function App() {
         <NavBar avatar={avatar} setIsAuth={setIsAuth} setDataUser={setDataUser} setDataVideos={setDataVideos} dataVideos={dataVideos} />
         <div style={{ margin: "20px" }}>
           <Routes>
-            <Route path="/" dataUser={dataUser?.data} element={shieldRoute(<Home dataVideos={dataVideos} />)} />
+            <Route path="/" element={shieldRoute(<Home dataUser={dataUser?.data} dataVideos={dataVideos} />)} />
             <Route path="/login" element={isAuth ? <Navigate to="/" /> : <Login setIsAuth={setIsAuth} />} />
             <Route path="/video/:id/:moduleId/:course" element={shieldRoute(<PlayList dataUser={dataUser?.data} avatar={avatar} />)} />
           </Routes>
