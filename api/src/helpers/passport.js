@@ -10,7 +10,7 @@ passport.use(new Strategy({
 
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "http://192.168.129.72:5057/user/login",
+    callbackURL: "http://192.168.129.72:5056",
     scope: ["identify", "guilds"]
 }, (accesToken, refresToken, profile, cb) => {
 
