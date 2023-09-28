@@ -15,10 +15,10 @@ export default function Login({ setIsAuth }) {
     }, [successUser]);
 
     const openDiscordLoginPopup = async () => {
-        const popup = window.open('https://discord.com/oauth2/authorize?response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fuser%2Flogin&scope=identify%20guilds&client_id=1153335528494731387', 'Discord Login', 'width=800,height=600');
+        const popup = window.open(import.meta.env.VITE_URL_LOGIN, 'Discord Login', 'width=800,height=600');
 
         window.addEventListener('message', async (event) => {
-            if (event.origin == "http://localhost:3000") {
+            if (event.origin == `http://${import.meta.env.VITE_HOST}:${import.meta.env.VITE_PORT_BACKEND}`) {
                 if (event.data) {
                     popup?.close();
                     const isCamper = await request({ endpoint: "user/camper" })

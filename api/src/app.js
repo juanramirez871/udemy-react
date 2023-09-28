@@ -5,10 +5,10 @@ import routerVideo from "./routes/video.js";
 import session  from "express-session";
 import passport from "passport";
 import "dotenv/config";
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT_BACKEND;
 const app = express();
 const corsOptions = {
-    origin: 'http://localhost:5173',
+    origin: `http://${process.env.HOST}:${process.env.PORT_FRONTEND}`,
     allowedHeaders: ['Content-Type', 'Authorization'],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
@@ -32,4 +32,4 @@ app
 
     .use("/video", routerVideo)
 
-    .listen(PORT, () => console.log("server api run http://localhost:" + PORT))
+    .listen(PORT, () => console.log(`server api run http://${process.env.HOST}:` + PORT))

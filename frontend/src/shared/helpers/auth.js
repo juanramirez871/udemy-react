@@ -13,7 +13,7 @@ const withAuth = (Component) => (props) => {
 
         if (!isAuthenticated && !namesNotRedirect.includes(nameComponent)) return navigate("/login");
         else if(isAuthenticated && namesNotRedirect.includes(nameComponent)) return navigate(-1);
-        
+
     }, [isAuthenticated, navigate]);
 
     return <Component {...props} />;

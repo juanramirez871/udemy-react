@@ -5,7 +5,7 @@ class User {
     res.send(
       `<script>window.opener.postMessage(${JSON.stringify(
         req.user
-      )}, "http://localhost:5173");</script>`
+      )}, "http://${process.env.HOST}:${process.env.PORT_FRONTEND}");</script>`
     );
   }
 

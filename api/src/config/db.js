@@ -9,7 +9,7 @@ export default class Connect {
     dbName = "udemy-react";
     db;
 
-    static getInstance() { 
+    static getInstance() {
 
         if(Connect.instance instanceof Connect) return Connect.instance;
         Connect.instance = new Connect;

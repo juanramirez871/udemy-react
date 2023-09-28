@@ -10,7 +10,7 @@ passport.use(new Strategy({
 
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/user/login",
+    callbackURL: `http://${process.env.HOST}:${process.env.PORT_BACKEND}/user/login`,
     scope: ["identify", "guilds"]
 }, (accesToken, refresToken, profile, cb) => {
 
