@@ -7,5 +7,8 @@ export default defineConfig({
   server: {
     port: process.env.VITE_PORT_FRONTEND,
     host: process.env.VITE_HOST
-  }
+  },
+  build: {
+    chunkSizeWarningLimit: 1000,
+  },
 })

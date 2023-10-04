@@ -5,6 +5,7 @@ import routerVideo from "./routes/video.js";
 import session  from "express-session";
 import passport from "passport";
 import "dotenv/config";
+import compressios from "compression";
 const PORT = process.env.PORT_BACKEND;
 const app = express();
 const corsOptions = {
@@ -14,6 +15,8 @@ const corsOptions = {
     credentials: true,
   };
 app
+
+    .use(compressios())
 
     .use(express.json())
 

@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "pm2": "pm2 serve dist --spa"
+    "pm2": "pm2 serve dist --spa --port 5057"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",

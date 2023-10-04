@@ -35,7 +35,7 @@ export default function Login({ setIsAuth }) {
     }
     return (
         <>
-            <div style={{ height: "20px", height: "80vh", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
+            <div style={{ height: "80vh", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
                 <Typography style={{ fontSize: "25px" }} >To access you must log in with Discord and belong to the campus lands server</Typography>
                 {
                     error
