@@ -17,7 +17,7 @@ const timeFormat = (date) => {
     if(horas < 24) return `${horas} hours ago`;
 }
 
-export default function Comment({ name, comment, timeAgo, avatar, responses = [], buttons = true, image, dataUser, i }) {
+export default function Comment({ name, comment, timeAgo, avatar, responses = [], buttons = true, image, dataUser, i, d, newComment }) {
 
     const [seeAnswer, setSeeAnswer] = useState(false);
     const [seeResponse, setseeResponse] = useState(false);
@@ -41,13 +41,14 @@ export default function Comment({ name, comment, timeAgo, avatar, responses = []
         setResponse([ ...response, payload ])
         setIsresponse(true);
         setCommentQuestion("");
+        newComment(!d)
     }
 
 
 
     return (
         <>
-            <div style={{ display: "grid", gridTemplateColumns: "60px 1fr", }}>
+            <div style={{ display: "grid", gridTemplateColumns: "60px 1fr",  marginTop: "15px", marginBottom: "15px"}}>
                 <Avatar alt="Avatar" style={{ marginRight: "20px" }} src={avatar} />
                 <div>
                     <div style={{ display: "flex" }}>
@@ -71,7 +72,7 @@ export default function Comment({ name, comment, timeAgo, avatar, responses = []
                         seeResponse &&
                         (
                             <>
-                                <Box sx={{ display: 'flex', alignItems: 'flex-end', width: "100%" }}>
+                                <Box sx={{ display: 'flex', alignItems: 'flex-end', width: "100%" ,}}>
                                     <Avatar alt="Avatar" style={{ marginRight: "20px" }} src={image} />
                                     <TextField value={commentQuestion} onChange={(e) => setCommentQuestion(e.target.value)} style={{ width: "100%" }} id="input-with-sx" label="add a comment" variant="standard" />
                                 </Box>

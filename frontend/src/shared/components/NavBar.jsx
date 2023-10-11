@@ -119,8 +119,8 @@ function ResponsiveAppBar({ avatar, setIsAuth, setDataUser }) {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+              {pages.map((page, i) => (
+                <MenuItem key={i} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -130,8 +130,8 @@ function ResponsiveAppBar({ avatar, setIsAuth, setDataUser }) {
             <Avatar
             style={{ marginTop: "15px" }} 
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJHPXxVlrNq-SWYWW0dBYgTBFPQskIEVwo1QW9XcU6ATR9DxZ50t4r7t6kPt1M0tdUREQ&usqp=CAU" />
-            {pages.map((page) => (
-              <NavLink to="/">
+            {pages.map((page, i) => (
+              <NavLink to="/" key={i}>
                 <Button
                   key={page}
                   onClick={handleCloseNavMenu}

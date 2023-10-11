@@ -53,7 +53,7 @@ function App() {
 
   const [isAuth, setIsAuth] = useState(document.cookie == "auth=true");
   const [dataUser, setDataUser] = useState(false);
-  const [avatar, setAvatar] = useState(false);
+  const [avatar, setAvatar] = useState("");
   const shieldRoute = (Component) => isAuth ? Component : <Navigate to="/login" />
   useEffect(() => {
     (async () => {

@@ -40,12 +40,12 @@ export default function DescriptionVideo({ dataVideo, idUser }) {
         <div style={{ marginTop: "20px" }}>
             <Box sx={{ '& > legend': { mt: 2 } }}>
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
-                    <div style={{ display: "flex", flexDirection: "row" }}>
+                    <div className='ac' style={{ display: "flex", flexDirection: "row" }}>
                         <Typography component="h1" sx={{ fontSize: "30px", marginRight: "20px" }}>{dataVideo.title ? dataVideo.title : "No title"}</Typography>
                         <div style={{ marginTop: "5px" }}>
-                            <button className={like && "green"} id="green" onClick={likePost}><i className="fa fa-thumbs-up fa-lg" aria-hidden="true"></i></button>
+                            <button className={`${like && "green"}`} id="green" onClick={likePost}><i className="fa fa-thumbs-up fa-lg" aria-hidden="true"></i></button>
                             <span style={{ marginRight: "10px" }}>{dataVideo?.likesPeople?.length}</span>
-                            <button onClick={disLikePost} className={disLike && "red"} id="red"><i className="fa fa-thumbs-down fa-lg" aria-hidden="true"></i></button>
+                            <button onClick={disLikePost} className={`${disLike && "red"}`} id="red"><i className="fa fa-thumbs-down fa-lg" aria-hidden="true"></i></button>
                             <span style={{ marginRight: "10px" }}>{dataVideo?.disLikesPeople?.length}</span>
                         </div>
                     </div>

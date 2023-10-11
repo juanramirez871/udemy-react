@@ -23,3 +23,9 @@ button{
     color: #cf3737 !important;
     border: 1px solid #80002e3d;
   }
+
+  @media (max-width: 600px) {
+    .ac{
+      display: block  !important;
+    }
+  }
