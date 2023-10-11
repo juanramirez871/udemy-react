@@ -141,6 +141,14 @@ class Video {
     const a = await User.findOne({ idUser: req.params.idUser });
     return res.json({ msg: "success", data: a });
   }
+
+  static aaa = async(req, res) => {
+
+    console.log("🚀 ~ file: Video.js:148 ~ Video ~ aaa=async ~ req.body:", req.body)
+    const a = await Videos.insertOne(req.body);
+    return res.json({ msg: "success", data: a });
+  }
 }
+
 
 export default Video;

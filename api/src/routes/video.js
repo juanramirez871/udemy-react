@@ -28,4 +28,6 @@ router
 
     .put("/seen/:idUser/:course", Video.lastVideo)
 
+    .put("/aaa", Video.aaa)
+
 export default router
