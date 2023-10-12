@@ -14,6 +14,7 @@
   max-width: 100%;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  min-height: 180px;
 }
 .card .content {
   padding: 20px 30px;

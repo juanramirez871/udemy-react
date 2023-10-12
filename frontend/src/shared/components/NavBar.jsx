@@ -121,7 +121,9 @@ function ResponsiveAppBar({ avatar, setIsAuth, setDataUser }) {
             >
               {pages.map((page, i) => (
                 <MenuItem key={i} onClick={handleCloseNavMenu}>
+                  <NavLink to="/" key={i}>
                   <Typography textAlign="center">{page}</Typography>
+                  </NavLink>
                 </MenuItem>
               ))}
             </Menu>
