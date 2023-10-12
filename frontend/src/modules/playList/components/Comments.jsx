@@ -7,6 +7,7 @@ import React from "react";
 import Comment from "./Comment";
 import request from "../../../shared/helpers/request";
 import { useParams } from "react-router-dom";
+import Links from "./Links";
 
 function CustomTabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -41,7 +42,7 @@ function a11yProps(index) {
     };
 }
 
-export default function Comments({ dataUser, avatar, comments, newComment, d }) {
+export default function Comments({ dataUser, avatar, comments, newComment, d, dataVideo }) {
 
     const [value, setValue] = React.useState(0);
     const [commentContributions, setCommentContributions] = React.useState("");
@@ -50,7 +51,6 @@ export default function Comments({ dataUser, avatar, comments, newComment, d }) 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-
     const postCommentC = async () => {
 
         const payload = {
@@ -66,7 +66,6 @@ export default function Comments({ dataUser, avatar, comments, newComment, d }) 
         newComment(!d)
         setCommentContributions("");
     }
-
     const postCommentQ = async () => {
 
         const payload = {
@@ -82,6 +81,7 @@ export default function Comments({ dataUser, avatar, comments, newComment, d }) 
         newComment(!d)
         setCommentQuestion("");
     }
+    console.log(dataVideo)
 
     return (
         <>
@@ -91,6 +91,7 @@ export default function Comments({ dataUser, avatar, comments, newComment, d }) 
                         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                             <Tab label="Contributions" {...a11yProps(0)} />
                             <Tab label="questions" {...a11yProps(1)} />
+                            <Tab label="Resources" {...a11yProps(2)} />
                         </Tabs>
                     </Box>
                     <CustomTabPanel value={value} index={0}>
@@ -107,7 +108,7 @@ export default function Comments({ dataUser, avatar, comments, newComment, d }) 
                                 ?
                                 comments[0].map((comment, i) => <Comment i={0} image={avatar} {...comment} dataUser={dataUser} key={i} />)
                                 :
-                                <Typography style={{ fontSize: "25px" }}>there are no comments 🥺</Typography>
+                                <Typography style={{ fontSize: "25px" }}>there are no comments 😓</Typography>
                         }
                     </CustomTabPanel>
                     <CustomTabPanel value={value} index={1}>
@@ -124,7 +125,18 @@ export default function Comments({ dataUser, avatar, comments, newComment, d }) 
                                 ?
                                 comments[1].map((comment, i) => <Comment i={1} image={avatar} {...comment} dataUser={dataUser} key={i} />)
                                 :
-                                <Typography style={{ fontSize: "25px" }}>there are no comments 🥺</Typography>
+                                <Typography style={{ fontSize: "25px" }}>there are no comments 😓</Typography>
+                        }
+                    </CustomTabPanel>
+                    <CustomTabPanel value={value} index={2}>
+                        {
+                            dataVideo?.links
+                            ? (
+                                <div style={{ marginBottom: "100px" }}>
+                                    {dataVideo?.links.map((el, i) => (<Links key={i} title={el["titulo-link"]} link={el.link} />))}
+                                </div>
+                            )
+                            : <Typography style={{ fontSize: "25px", marginBottom: "100px" }}>there are no resources in this video 😱</Typography>
                         }
                     </CustomTabPanel>
                 </Box>

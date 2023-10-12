@@ -35,7 +35,7 @@ export default function PlayList({ dataUser, avatar }) {
                 <div style={{ marginBottom: "20px" }}>
                     <SkeletonColor dataVideo={ video } />
                     <DescriptionVideo dataVideo={ video } idUser={dataUser?.id} />
-                    <Comments newComment={newComment} d={d} dataUser={dataUser} avatar={avatar} comments={comments} />
+                    <Comments dataVideo={ video } newComment={newComment} d={d} dataUser={dataUser} avatar={avatar} comments={comments} />
                 </div>
                 <AccordionVideo modules={modules} idUser={dataUser?.id} />
             </div>
