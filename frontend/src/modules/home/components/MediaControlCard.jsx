@@ -64,7 +64,7 @@ export default function MediaControlCard({ dataVideos, dataUser }) {
               <Box sx={{ display: 'flex', flexDirection: 'column', color: "white" }}>
                 <CardContent sx={{ flex: '1 0 auto' }}>
                   <Typography component="div" variant="h5">
-                    You don't have last seen course 😣
+                    You don't have last seen course 😨
                   </Typography>
                 </CardContent>
               </Box>
