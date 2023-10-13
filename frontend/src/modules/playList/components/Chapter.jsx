@@ -23,7 +23,7 @@ export function Chapter({ video, ii, i, idUser }) {
                         :
                         <Checkbox onClick={changeSeen} {...label} id={"checkbox" + ii} color="success" />
                 }
-                <NavLink to={`/video/${video._id}/${i + 1}/${course}`} replace={true}>
+                <NavLink onClick={() => window.scrollTo(0, 0)} to={`/video/${video._id}/${i + 1}/${course}`} replace={true}>
                     {ii + 1}. {video.title ? video.title : "no title"} - { Math.floor(parseInt(video?.duracion) / 60000) ? (
                         <b style={{ fontSize: "15px" }}>{ Math.floor(parseInt(video?.duracion) / 60000) } Minutes</b>
                     )

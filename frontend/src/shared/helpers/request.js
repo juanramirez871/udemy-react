@@ -10,12 +10,9 @@ export default async function request({ endpoint, method = "GET", data, headers 
         }
         if(data) config.body = JSON.stringify(data);
         if(headers) config.headers = headers
-    
         const response = await (await fetch(`http://${import.meta.env.VITE_HOST}:${import.meta.env.VITE_PORT_BACKEND}/` + endpoint, config)).json();
         if(response?.msg == "Not authorized") Cookies.remove("auth");
         else return response
     } catch (error) {
-        console.log(error, endpoint);
     };
-    
 }

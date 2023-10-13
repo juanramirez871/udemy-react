@@ -81,7 +81,6 @@ export default function Comments({ dataUser, avatar, comments, newComment, d, da
         newComment(!d)
         setCommentQuestion("");
     }
-    console.log(dataVideo)
 
     return (
         <>
